@@ -483,28 +483,28 @@ function swEv(evId, el) {
 function updateStats(){
   const bar = document.getElementById('statsBar');
   if(!activeEvent){
-    // "Tous" mode
+    // ALL mode — Base RH overview
     const total=D.length;
-    const paCount=D.filter(c=>c.assignments.some(a=>a.event_id==='pa')).length;
-    const newCount=D.filter(c=>c.status==='new').length;
-    const incCount=D.filter(c=>c.status==='partial'||c.status==='verify').length;
+    const completeCount=D.filter(c=>calcCompletion(c)>=100).length;
+    const toChase=D.filter(c=>c.status==='partial'||c.status==='verify'||c.status==='new').length;
+    const recentCount=D.filter(c=>c.assignments.length>=2).length; // proxy for "recently active"
     bar.innerHTML=`
       <div class="stat-card"><div class="stat-icon" style="background:rgba(88,101,242,.14)"><svg style="stroke:var(--blue)" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><div><div class="stat-value">${total}</div><div class="stat-label">Total contacts</div></div></div>
-      <div class="stat-card"><div class="stat-icon" style="background:rgba(59,165,93,.14)"><svg style="stroke:var(--green)" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div><div><div class="stat-value">${paCount}</div><div class="stat-label">Actifs PA26</div></div></div>
-      <div class="stat-card"><div class="stat-icon" style="background:rgba(245,166,35,.14)"><svg style="stroke:var(--amber)" viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"/></svg></div><div><div class="stat-value">${newCount}</div><div class="stat-label">Nouveaux</div></div></div>
-      <div class="stat-card"><div class="stat-icon" style="background:rgba(237,66,69,.14)"><svg style="stroke:var(--red)" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg></div><div><div class="stat-value">${incCount}</div><div class="stat-label">Incomplets</div></div></div>`;
+      <div class="stat-card"><div class="stat-icon" style="background:rgba(59,165,93,.14)"><svg style="stroke:var(--green)" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div><div><div class="stat-value">${completeCount}</div><div class="stat-label">Profils complets</div></div></div>
+      <div class="stat-card"><div class="stat-icon" style="background:rgba(245,166,35,.14)"><svg style="stroke:var(--amber)" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg></div><div><div class="stat-value">${toChase}</div><div class="stat-label">À relancer</div></div></div>
+      <div class="stat-card"><div class="stat-icon" style="background:rgba(155,89,182,.14)"><svg style="stroke:var(--purple)" viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"/></svg></div><div><div class="stat-value">${recentCount}</div><div class="stat-label">Multi-événements</div></div></div>`;
   } else {
-    // Event-scoped mode
+    // Event-scoped mode — staffing overview
     const ev = EVENTS[activeEvent];
     const assigned = D.filter(c=>c.assignments.some(a=>a.event_id===activeEvent));
-    const confirmed = assigned.filter(c=>c.assignments.find(a=>a.event_id===activeEvent)?.status==='confirmed'||c.assignments.find(a=>a.event_id===activeEvent)?.status==='completed');
-    const invited = assigned.filter(c=>c.assignments.find(a=>a.event_id===activeEvent)?.status==='invited');
-    const linkPending = assigned.filter(c=>{const a=c.assignments.find(x=>x.event_id===activeEvent);return a&&a.magic_link_sent&&!a.magic_link_completed});
+    const confirmed = assigned.filter(c=>{const a=c.assignments.find(x=>x.event_id===activeEvent);return a&&(a.status==='confirmed'||a.status==='completed')});
+    const pending = assigned.filter(c=>{const a=c.assignments.find(x=>x.event_id===activeEvent);return a&&a.status==='invited'});
+    const logComplete = assigned.filter(c=>{const a=c.assignments.find(x=>x.event_id===activeEvent);if(!a)return false;const hasTransport=a.autonome_transport||(a.transport_aller&&a.transport_retour);const hasHeberg=a.autonome_hebergement||a.hebergement||c.local;return hasTransport&&hasHeberg});
     bar.innerHTML=`
       <div class="stat-card"><div class="stat-icon" style="background:rgba(88,101,242,.14)"><svg style="stroke:var(--blue)" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><div><div class="stat-value">${assigned.length}</div><div class="stat-label">Assignés</div></div></div>
       <div class="stat-card"><div class="stat-icon" style="background:rgba(59,165,93,.14)"><svg style="stroke:var(--green)" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div><div><div class="stat-value">${confirmed.length}</div><div class="stat-label">Confirmés</div></div></div>
-      <div class="stat-card"><div class="stat-icon" style="background:rgba(245,166,35,.14)"><svg style="stroke:var(--amber)" viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"/></svg></div><div><div class="stat-value">${invited.length}</div><div class="stat-label">Invités</div></div></div>
-      <div class="stat-card"><div class="stat-icon" style="background:rgba(237,66,69,.14)"><svg style="stroke:var(--red)" viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></div><div><div class="stat-value">${linkPending.length}</div><div class="stat-label">Lien en attente</div></div></div>`;
+      <div class="stat-card"><div class="stat-icon" style="background:rgba(245,166,35,.14)"><svg style="stroke:var(--amber)" viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"/></svg></div><div><div class="stat-value">${pending.length}</div><div class="stat-label">En attente</div></div></div>
+      <div class="stat-card"><div class="stat-icon" style="background:rgba(155,89,182,.14)"><svg style="stroke:var(--purple)" viewBox="0 0 24 24"><path d="M9 17H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg></div><div><div class="stat-value">${logComplete.length}</div><div class="stat-label">Logistique OK</div></div></div>`;
   }
 }
 
