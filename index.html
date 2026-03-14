@@ -334,7 +334,7 @@ select.filter{flex:1;min-width:0;font-size:var(--fs-xs);padding:7px 22px 7px 8px
 <div class="content">
 <div class="stats-bar" id="statsBar"></div>
 <div class="toolbar"><div class="search-wrap"><svg class="search-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg><input type="text" placeholder="Rechercher nom, email, compétence…" id="si" oninput="filt()"></div><select class="filter" id="tf" onchange="filt()"><option value="">Équipe</option><option>Production</option><option>Technique Scène</option><option>Technique Site</option><option>Aménagement</option><option>Artistique</option><option>Communication</option><option>Scénographie</option><option>Performeur</option><option>Prestataire Externe</option><option>Partenariat</option><option>Hybride</option></select><select class="filter" id="cf" onchange="filt()"><option value="">Contrat</option><option>Intermittent</option><option>Auto-entrepreneur</option><option>Prestataire externe</option><option>CDI</option><option>CDD</option><option>Bénévole</option></select><select class="filter" id="sf" onchange="filt()"><option value="">Statut</option><option value="complete">Complet</option><option value="partial">Incomplet</option><option value="new">Nouveau</option><option value="verify">À vérifier</option></select><div class="filter-count" id="fc"></div></div>
-<div class="table-wrap"><table><thead><tr><th onclick="srt('nom')">Nom</th><th onclick="srt('equipe')">Équipe</th><th onclick="srt('ville')">Ville</th><th onclick="srt('contrat_type')">Contrat</th><th onclick="srt('status')">Statut</th><th>Compétences</th><th>Profil</th></tr></thead><tbody id="tb"></tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th onclick="srt('nom')">Nom</th><th onclick="srt('equipe')">Équipe</th><th onclick="srt('role')">Rôle / Poste</th><th onclick="srt('ville')">Ville</th><th onclick="srt('status')">Statut</th><th>Profil</th></tr></thead><tbody id="tb"></tbody></table></div>
 </div></div>
 
 <!-- RIGHT SIDEBAR -->
@@ -514,8 +514,7 @@ function updateStats(){
 function render(data){
   const b=document.getElementById('tb');
   b.innerHTML=data.map(c=>{
-    // Determine team to show: if event scoped, show team for that event; otherwise show most recent
-    let team='—',role='';
+    let team='—',role='—';
     if(activeEvent){
       const a=c.assignments.find(x=>x.event_id===activeEvent);
       if(a){team=a.team;role=a.role}
@@ -523,9 +522,8 @@ function render(data){
       team=c.assignments[0].team;role=c.assignments[0].role;
     }
     const tc=TC[team]||{bg:'rgba(255,255,255,.08)',c:'var(--c3)'};
-    const tgs=c.tags.slice(0,2).map(x=>`<span style="font-family:'JetBrains Mono',monospace;font-size:var(--ct-xs);padding:1px 5px;border-radius:3px;background:rgba(255,255,255,.06);color:var(--c3);display:inline-flex;align-items:center;gap:2px">${x.name} ${starsHtml(x.level)}</span>`).join(' ')+(c.tags.length>2?` <span style="font-size:var(--ct-xs);color:var(--c3)">+${c.tags.length-2}</span>`:'');
     const pct=calcCompletion(c);const pColor=complColor(pct);
-    return`<tr class="${c.contact_id===sid?'sel':''}" onclick="openC(${c.contact_id})"><td><div class="td-name">${hx(c.contact_id,c.prenom,c.nom)}<div class="nb"><div class="fn">${c.prenom} ${c.nom}</div><span class="em">${c.email||'—'}</span></div></div></td><td><span class="tbg" style="background:${tc.bg};color:${tc.c}">${team}</span></td><td style="font-size:var(--ct-xs);color:var(--c3)">${c.ville||'—'}</td><td style="font-size:var(--ct-xs);color:var(--c3)">${c.contrat_type}</td><td>${stb(c.status)}</td><td><div style="display:flex;gap:3px;flex-wrap:wrap">${tgs||'<span style="color:var(--c3);font-size:var(--ct-xs)">—</span>'}</div></td><td><span style="font-family:'JetBrains Mono',monospace;font-size:var(--ct-xs);color:var(--c3)">${pct}%</span><div class="pct-bar"><div class="pct-fill" style="width:${pct}%;background:${pColor}"></div></div></td></tr>`;
+    return`<tr class="${c.contact_id===sid?'sel':''}" onclick="openC(${c.contact_id})"><td><div class="td-name">${hx(c.contact_id,c.prenom,c.nom)}<div class="nb"><div class="fn">${c.prenom} ${c.nom}</div><span class="em">${c.email||'—'}</span></div></div></td><td><span class="tbg" style="background:${tc.bg};color:${tc.c}">${team}</span></td><td style="color:var(--c2)">${role}</td><td style="color:var(--c3)">${c.ville||'—'}</td><td>${stb(c.status)}</td><td><span style="font-family:'JetBrains Mono',monospace;font-size:var(--ct-xs);color:var(--c3)">${pct}%</span><div class="pct-bar"><div class="pct-fill" style="width:${pct}%;background:${pColor}"></div></div></td></tr>`;
   }).join('');
   document.getElementById('fc').textContent=data.length+' résultat'+(data.length!==1?'s':'');
   document.getElementById('pgCount').textContent=data.length;
@@ -567,6 +565,7 @@ function srt(col){
   D.sort((a,b)=>{let x,y;
     if(col==='nom'){x=a.nom;y=b.nom}
     else if(col==='equipe'){x=(a.assignments[0]?.team||'');y=(b.assignments[0]?.team||'')}
+    else if(col==='role'){x=(a.assignments[0]?.role||'');y=(b.assignments[0]?.role||'')}
     else if(col==='ville'){x=a.ville||'';y=b.ville||''}
     else if(col==='contrat_type'){x=a.contrat_type;y=b.contrat_type}
     else if(col==='status'){x=a.status;y=b.status}
