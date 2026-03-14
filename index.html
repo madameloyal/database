@@ -16,12 +16,12 @@
   --fs-xs:9px;--fs-sm:11px;--fs-md:13px;--fs-lg:15px;--fs-xl:18px;--fs-2xl:24px;
   --fw-r:400;--fw-m:500;--fw-s:600;--fw-b:800;
   --stc:#3ba55d;--stcb:rgba(59,165,93,.14);--stp:#f5a623;--stpb:rgba(245,166,35,.14);--stn:#5865f2;--stnb:rgba(88,101,242,.14);--stv:#ed4245;--stvb:rgba(237,66,69,.14);
-  --right-w:400px;
+  --right-w:420px;
 }
 html,body{height:100%;overflow:hidden;background:linear-gradient(180deg,#7758cf,#8c6bd8 50%,#be98e9);font-family:'Outfit',sans-serif;-webkit-font-smoothing:antialiased;color:var(--c2)}
 .app{display:flex;width:100vw;height:100vh;height:100dvh}
 
-/* LEFT ZONE */
+/* ── LEFT ZONE ── */
 .left-zone{display:flex;flex-direction:column;flex-shrink:0;width:284px}
 .left-top{display:flex;flex:1;overflow:hidden}
 .left-bottom{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#1a1c38;border-top:1px solid rgba(255,255,255,.15)}
@@ -40,7 +40,7 @@ html,body{height:100%;overflow:hidden;background:linear-gradient(180deg,#7758cf,
 .rail-top{height:56px;display:flex;align-items:center;justify-content:center;flex-shrink:0;width:100%;border-bottom:1px solid rgba(255,255,255,.08)}
 .rail-logo{width:40px;height:40px;border-radius:50%;overflow:hidden;cursor:pointer;flex-shrink:0;box-shadow:0 0 0 2px rgba(212,82,42,.45),0 2px 10px rgba(212,82,42,.25);transition:border-radius .2s}
 .rail-logo:hover{border-radius:12px}.rail-logo img{width:100%;height:100%;object-fit:cover;display:block}
-.rail-icons{display:flex;flex-direction:column;align-items:center;gap:8px;margin:auto 0;padding:6px 0}
+.rail-icons{display:flex;flex-direction:column;align-items:center;gap:6px;margin:auto 0;padding:6px 0}
 .rail-ev-wrap{position:relative;display:flex;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer;padding:4px 0}
 .rail-event{width:42px;height:42px;clip-path:polygon(50% 0%,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%);display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.08);transition:background .2s;overflow:hidden}
 .rail-event span{font-size:var(--fs-sm);font-weight:var(--fw-b);color:var(--c2);letter-spacing:-.5px;transition:color .2s}
@@ -48,8 +48,15 @@ html,body{height:100%;overflow:hidden;background:linear-gradient(180deg,#7758cf,
 .rail-ev-wrap.on .rail-event{background:rgba(255,255,255,.14)}.rail-ev-wrap.on .rail-event span{color:#fff}
 .rail-ev-wrap::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:3px;border-radius:0 3px 3px 0;background:var(--accent);height:0;opacity:0;transition:height .2s,opacity .2s}
 .rail-ev-wrap:hover::before{height:8px;opacity:.5}.rail-ev-wrap.on::before{height:20px;opacity:1}
+/* Archived event styling */
+.rail-ev-wrap.archived .rail-event{opacity:.4}.rail-ev-wrap.archived.on .rail-event{opacity:.7}
+.rail-sep{width:28px;height:1px;background:rgba(255,255,255,.1);margin:4px 0}
 .rail-add{width:42px;height:42px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;cursor:pointer;background:rgba(255,255,255,.05);color:var(--green);font-size:var(--fs-2xl);font-weight:var(--fw-r);transition:border-radius .2s,background .2s}
 .rail-add:hover{border-radius:12px;background:var(--green);color:#fff}
+/* "Tous" button */
+.rail-tous{width:42px;height:42px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;cursor:pointer;background:rgba(255,255,255,.05);font-size:var(--fs-xs);font-weight:var(--fw-b);color:var(--c3);letter-spacing:-.3px;transition:background .2s,color .2s}
+.rail-tous:hover{background:rgba(255,255,255,.12);color:var(--c1)}
+.rail-tous.on{background:rgba(212,82,42,.15);color:var(--accent)}
 
 /* NAV */
 .nav{width:220px;flex-shrink:0;display:flex;flex-direction:column;background:linear-gradient(180deg,rgba(80,75,120,.5),rgba(45,42,80,.6));backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-right:1px solid rgba(255,255,255,.06);box-shadow:inset 0 1px 0 rgba(255,255,255,.15),0 8px 32px rgba(0,0,0,.25)}
@@ -68,21 +75,22 @@ html,body{height:100%;overflow:hidden;background:linear-gradient(180deg,#7758cf,
 .ni em{margin-left:auto;font-style:normal;font-family:'JetBrains Mono',monospace;font-size:var(--fs-xs);font-weight:var(--fw-s);padding:2px 7px;border-radius:10px}
 .em-live{background:rgba(59,165,93,.18);color:var(--green)}.em-design{background:rgba(245,166,35,.18);color:var(--amber)}.em-soon{background:rgba(255,255,255,.06);color:var(--c3)}.em-api{background:rgba(88,101,242,.18);color:var(--blue)}
 
-/* MAIN */
+/* ── MAIN ── */
 .main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0;background:linear-gradient(180deg,var(--bg-top),var(--bg-bot))}
 .topbar{height:56px;flex-shrink:0;display:flex;align-items:center;padding:0 24px;background:var(--frame);border-bottom:1px solid rgba(255,255,255,.06);gap:12px}
-.topbar-left{display:flex;align-items:center;gap:14px;flex:1;min-width:0}
+.topbar-left{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
 .page-title{font-size:var(--fs-xl);font-weight:var(--fw-b);color:var(--c1);letter-spacing:-.3px;white-space:nowrap}
 .page-count{font-family:'JetBrains Mono',monospace;font-size:var(--fs-sm);color:var(--c3);background:rgba(255,255,255,.06);padding:2px 8px;border-radius:6px}
+/* Event context badge in topbar */
+.ev-ctx{font-family:'JetBrains Mono',monospace;font-size:var(--fs-xs);font-weight:var(--fw-s);padding:3px 8px;border-radius:6px;background:rgba(212,82,42,.15);color:var(--accent)}
+.ev-ctx.archived{background:rgba(255,255,255,.06);color:var(--c3)}
 .topbar-right{display:flex;align-items:center;gap:8px}
 .btn-primary{background:var(--accent);color:#fff;border:none;padding:8px 16px;border-radius:8px;font-family:'Outfit',sans-serif;font-size:var(--fs-md);font-weight:var(--fw-s);cursor:pointer;transition:opacity .15s;white-space:nowrap;display:flex;align-items:center;gap:6px}
 .btn-primary:hover{opacity:.88}.btn-primary svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round}
 .btn-secondary{background:transparent;color:var(--c2);border:1px solid var(--c4);padding:8px 16px;border-radius:8px;font-family:'Outfit',sans-serif;font-size:var(--fs-md);font-weight:var(--fw-s);cursor:pointer;transition:all .15s;white-space:nowrap;display:flex;align-items:center;gap:6px}
 .btn-secondary:hover{border-color:var(--c3);color:var(--c1)}.btn-secondary svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
 .tb-toggle{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .14s}
-.tb-toggle:hover{background:rgba(255,255,255,.06)}
-.tb-toggle svg{width:16px;height:16px;fill:none;stroke:var(--c3);stroke-width:1.6;stroke-linecap:round;transition:stroke .14s}
-.tb-toggle:hover svg{stroke:var(--c1)}
+.tb-toggle:hover{background:rgba(255,255,255,.06)}.tb-toggle svg{width:16px;height:16px;fill:none;stroke:var(--c3);stroke-width:1.6;stroke-linecap:round;transition:stroke .14s}.tb-toggle:hover svg{stroke:var(--c1)}
 .content{flex:1;display:flex;flex-direction:column;overflow:hidden}
 
 /* Stats */
@@ -121,17 +129,20 @@ td{padding:10px 12px;font-size:var(--fs-sm);vertical-align:middle}
 .har{position:absolute;inset:0;z-index:1}.har svg{width:100%;height:100%}
 .nb .fn{font-size:var(--fs-sm);font-weight:var(--fw-s);color:var(--c1)}
 .nb .em{font-size:var(--fs-xs);color:var(--c3);font-family:'JetBrains Mono',monospace;margin-top:1px;display:block}
-.tb{display:inline-block;padding:2px 6px;border-radius:3px;font-size:var(--fs-xs);font-weight:var(--fw-s);white-space:nowrap}
+.tbg{display:inline-block;padding:2px 6px;border-radius:3px;font-size:var(--fs-xs);font-weight:var(--fw-s);white-space:nowrap}
 .sb{display:inline-flex;align-items:center;gap:4px;padding:2px 7px;border-radius:16px;font-size:var(--fs-xs);font-weight:var(--fw-s);white-space:nowrap}
 .sb::before{content:'';width:5px;height:5px;border-radius:50%}
 .sc{background:var(--stcb);color:var(--stc)}.sc::before{background:var(--stc)}
 .sp{background:var(--stpb);color:var(--stp)}.sp::before{background:var(--stp)}
 .sn{background:var(--stnb);color:var(--stn)}.sn::before{background:var(--stn)}
 .sv{background:var(--stvb);color:var(--stv)}.sv::before{background:var(--stv)}
+/* Profile completion mini bar */
+.pct-bar{width:48px;height:4px;background:var(--c4);border-radius:2px;overflow:hidden;display:inline-block;vertical-align:middle;margin-left:4px}
+.pct-fill{height:100%;border-radius:2px;transition:width .3s}
 @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
 tbody tr{animation:fadeIn .2s ease both}
 
-/* RIGHT SIDEBAR */
+/* ── RIGHT SIDEBAR ── */
 .right{width:var(--right-w);flex-shrink:0;background:var(--frame);border-left:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;overflow:hidden;transition:width .3s,opacity .3s,transform .3s}
 .right.shut{width:0;overflow:hidden;opacity:0;border-left:none}
 .rt-head{display:flex;align-items:center;justify-content:space-between;height:56px;padding:0 18px;border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0}
@@ -141,25 +152,34 @@ tbody tr{animation:fadeIn .2s ease both}
 .tb-b:hover{background:rgba(255,255,255,.06)}
 .tb-b svg{width:16px;height:16px;fill:none;stroke:var(--c3);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;transition:stroke .14s}
 .tb-b:hover svg{stroke:var(--c1)}
-
-/* Empty state */
 .r-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:40px 24px;text-align:center}
 .r-empty svg{width:44px;height:44px;fill:none;stroke:var(--c4);stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
 .r-empty p{font-size:var(--fs-sm);color:var(--c3);line-height:1.5}
 
-/* Profile */
-.rp-pf{padding:20px 18px 14px;display:flex;align-items:flex-start;gap:12px;border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0}
+/* Profile header */
+.rp-pf{padding:18px 18px 12px;display:flex;align-items:flex-start;gap:12px;border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0}
 .rp-aw{position:relative;width:52px;height:52px;flex-shrink:0}
 .rp-av{width:40px;height:40px;clip-path:polygon(50% 0%,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%);display:flex;align-items:center;justify-content:center;font-size:var(--fs-md);font-weight:var(--fw-b);color:#fff;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2}
 .rp-ar{position:absolute;inset:0;z-index:1}.rp-ar svg{width:100%;height:100%}
 .rp-info{flex:1;min-width:0}
 .rp-name{font-size:var(--fs-lg);font-weight:var(--fw-b);color:var(--c1);letter-spacing:-.02em}
 .rp-meta{font-size:var(--fs-xs);color:var(--c3);margin-top:3px;display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+/* Quick actions below name */
+.rp-actions{display:flex;gap:4px;margin-top:8px}
+.rp-act{padding:4px 10px;border-radius:5px;border:1px solid var(--c4);font-family:'Outfit',sans-serif;font-size:var(--fs-xs);font-weight:var(--fw-s);color:var(--c3);cursor:pointer;transition:all .14s;background:none;display:flex;align-items:center;gap:4px}
+.rp-act:hover{border-color:var(--accent);color:var(--accent)}
+.rp-act svg{width:11px;height:11px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+
+/* Completion bar in profile */
+.rp-compl{display:flex;align-items:center;gap:8px;margin-top:6px}
+.rp-compl-bar{flex:1;height:4px;background:var(--c4);border-radius:2px;overflow:hidden}
+.rp-compl-fill{height:100%;border-radius:2px;transition:width .3s}
+.rp-compl-pct{font-family:'JetBrains Mono',monospace;font-size:var(--fs-xs);color:var(--c3)}
 
 /* Tabs */
 .rp-tabs{display:flex;border-bottom:1px solid rgba(255,255,255,.06);padding:0 18px;flex-shrink:0;overflow-x:auto;gap:0}
 .rp-tabs::-webkit-scrollbar{display:none}
-.rp-tab{padding:10px 0;margin-right:16px;font-size:var(--fs-xs);font-weight:var(--fw-s);color:var(--c3);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:color .15s,border-color .15s;text-transform:uppercase;letter-spacing:.05em}
+.rp-tab{padding:10px 0;margin-right:14px;font-size:var(--fs-xs);font-weight:var(--fw-s);color:var(--c3);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:color .15s,border-color .15s;text-transform:uppercase;letter-spacing:.05em}
 .rp-tab:hover{color:var(--c1)}.rp-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
 
 /* Body */
@@ -167,7 +187,7 @@ tbody tr{animation:fadeIn .2s ease both}
 .rp-panel{display:none;padding:16px 18px}.rp-panel.active{display:block}
 .fs{margin-bottom:20px}
 .fs-t{font-size:var(--fs-xs);font-family:'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--c3);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--c4)}
-.fg{display:grid;grid-template-columns:1fr 1fr;gap:8px}.fg1{grid-template-columns:1fr}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .f{display:flex;flex-direction:column;gap:3px;min-width:0;overflow:hidden}.f2{grid-column:span 2}
 .f label{font-size:var(--fs-xs);font-weight:var(--fw-s);color:var(--c3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .f input,.f select,.f textarea{padding:7px 9px;border:1px solid var(--c4);border-radius:6px;background:var(--frame-input);font-family:'Outfit',sans-serif;font-size:var(--fs-sm);color:var(--c1);outline:none;transition:border-color .15s;width:100%;min-width:0;box-sizing:border-box}
@@ -175,35 +195,51 @@ tbody tr{animation:fadeIn .2s ease both}
 .f input::placeholder,.f textarea::placeholder{color:var(--c3)}
 .f select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='rgba(255,255,255,.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center;padding-right:24px;cursor:pointer}
 .f select option{background:var(--frame);color:var(--c2)}.f textarea{resize:vertical;min-height:50px}
-.tw{display:flex;flex-wrap:wrap;gap:4px;padding:6px 8px;border:1px solid var(--c4);border-radius:6px;background:var(--frame-input);min-height:32px}
-.tg{display:inline-flex;align-items:center;gap:4px;padding:2px 6px;border-radius:3px;font-size:var(--fs-xs);font-weight:var(--fw-s);background:rgba(255,255,255,.08);border:1px solid var(--c4);color:var(--c1)}
-.tg-x{cursor:pointer;color:var(--c3);font-size:var(--fs-sm);line-height:1}.tg-x:hover{color:var(--red)}
+/* Disabled field (archived/readonly) */
+.f input:disabled,.f select:disabled,.f textarea:disabled{opacity:.5;cursor:not-allowed}
+
+/* Skill rows with stars */
+.sk{display:flex;align-items:center;gap:6px;padding:8px 0;border-bottom:1px solid var(--c4)}.sk:last-child{border-bottom:none}
+.sk-name{font-size:var(--fs-sm);font-weight:var(--fw-s);color:var(--c1);min-width:80px}
+.sk-stars{display:flex;gap:1px;cursor:pointer}
+.sk-star{font-size:12px;color:var(--c4);transition:color .12s;user-select:none}.sk-star.on{color:var(--amber)}.sk-star:hover{color:var(--amber)!important}
+.sk-rm{margin-left:auto;cursor:pointer;color:var(--c3);font-size:var(--fs-sm);transition:color .14s;padding:2px 4px}.sk-rm:hover{color:var(--red)}
 .tg-btns{display:flex;gap:4px;flex-wrap:wrap;margin-top:5px}
 .tg-b{background:none;border:1px solid var(--c4);border-radius:4px;padding:2px 7px;font-family:'Outfit',sans-serif;font-size:var(--fs-xs);font-weight:var(--fw-s);color:var(--c3);cursor:pointer;transition:all .14s}
 .tg-b:hover{border-color:var(--accent);color:var(--accent)}
-/* Skill tag with stars */
-.sk{display:flex;align-items:center;gap:6px;padding:8px 0;border-bottom:1px solid var(--c4)}
-.sk:last-child{border-bottom:none}
-.sk-name{font-size:var(--fs-sm);font-weight:var(--fw-s);color:var(--c1);min-width:80px}
-.sk-stars{display:flex;gap:1px;cursor:pointer}
-.sk-star{font-size:12px;color:var(--c4);transition:color .12s;user-select:none}
-.sk-star.on{color:var(--amber)}
-.sk-star:hover{color:var(--amber)!important}
-.sk-rm{margin-left:auto;cursor:pointer;color:var(--c3);font-size:var(--fs-sm);transition:color .14s;padding:2px 4px}
-.sk-rm:hover{color:var(--red)}
+
 /* Rate fields */
 .rate-row{display:grid;grid-template-columns:1fr 100px;gap:6px}
 .rate-row input,.rate-row select{padding:7px 9px;border:1px solid var(--c4);border-radius:6px;background:var(--frame-input);font-family:'Outfit',sans-serif;font-size:var(--fs-sm);color:var(--c1);outline:none;transition:border-color .15s;width:100%;min-width:0;box-sizing:border-box}
-.rate-row input:focus,.rate-row select:focus{border-color:var(--accent)}
-.rate-row input::placeholder{color:var(--c3)}
+.rate-row input:focus,.rate-row select:focus{border-color:var(--accent)}.rate-row input::placeholder{color:var(--c3)}
 .rate-row select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='rgba(255,255,255,.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center;padding-right:24px;cursor:pointer}
 .rate-row select option{background:var(--frame);color:var(--c2)}
+
+/* Event logistics section in right panel */
+.ev-section{background:rgba(212,82,42,.04);border:1px solid rgba(212,82,42,.15);border-radius:10px;padding:14px;margin-bottom:16px}
+.ev-section-hd{display:flex;align-items:center;gap:6px;margin-bottom:10px;font-size:var(--fs-xs);font-family:'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:var(--fw-s)}
+.ev-section.archived{border-color:var(--c4);background:rgba(255,255,255,.02)}
+.ev-section.archived .ev-section-hd{color:var(--c3)}
+
+/* History rows */
 .hist{display:flex;align-items:center;padding:9px 0;border-bottom:1px solid var(--c4);gap:8px;flex-wrap:wrap}.hist:last-child{border-bottom:none}
 .hist-ev{font-size:var(--fs-sm);font-weight:var(--fw-s);color:var(--c1);min-width:100px}
 .hist-role{font-size:var(--fs-xs);color:var(--c3);flex:1}
 .hist-dates{font-size:var(--fs-xs);color:var(--c3);font-family:'JetBrains Mono',monospace}
+
+/* Admin locked */
 .admin-lock{background:rgba(212,82,42,.06);border:1px solid rgba(212,82,42,.2);border-radius:8px;padding:14px;margin-bottom:16px}
 .admin-lock-hd{display:flex;align-items:center;gap:6px;margin-bottom:10px;font-size:var(--fs-xs);font-family:'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+
+/* Magic link box */
+.ml-box{display:flex;align-items:center;gap:8px;padding:9px 12px;background:var(--frame-input);border:1px solid var(--c4);border-radius:8px;margin-top:10px}
+.ml-url{flex:1;font-family:'JetBrains Mono',monospace;font-size:var(--fs-xs);color:var(--c3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ml-copy{background:var(--accent);color:#fff;border:none;padding:5px 10px;border-radius:5px;font-family:'Outfit',sans-serif;font-size:var(--fs-xs);font-weight:var(--fw-b);cursor:pointer;white-space:nowrap;transition:opacity .15s}
+.ml-copy:hover{opacity:.8}
+.ml-send{background:none;border:1px solid var(--c4);color:var(--c3);padding:5px 10px;border-radius:5px;font-family:'Outfit',sans-serif;font-size:var(--fs-xs);font-weight:var(--fw-s);cursor:pointer;white-space:nowrap;transition:all .14s}
+.ml-send:hover{border-color:var(--green);color:var(--green)}
+
+/* Footer */
 .rp-footer{padding:10px 18px;border-top:1px solid rgba(255,255,255,.06);display:flex;gap:8px;flex-shrink:0}
 .rp-footer .btn-primary{flex:1;justify-content:center;padding:7px 14px;font-size:var(--fs-sm)}
 .btn-sm-d{background:none;border:1px solid rgba(237,66,69,.25);border-radius:6px;padding:7px 12px;font-family:'Outfit',sans-serif;font-size:var(--fs-xs);font-weight:var(--fw-s);color:var(--red);cursor:pointer;transition:all .14s}
@@ -212,30 +248,16 @@ tbody tr{animation:fadeIn .2s ease both}
 /* MOBILE */
 .mob{display:none}
 @media(max-width:768px){
-.left-zone{display:none!important}
-.app{flex-direction:column}
-.main{flex:1;padding-bottom:62px}
-.topbar{padding:0 12px;height:50px}
-.topbar .page-title{font-size:var(--fs-lg)}
-.stats-bar{padding:12px 12px 0;gap:6px}
-.stat-card{padding:8px 10px;min-width:0;flex:1}
-.stat-value{font-size:14px}
-.stat-icon{width:28px;height:28px;border-radius:6px}
-.stat-icon svg{width:13px;height:13px}
-.toolbar{padding:10px 12px 0;gap:6px;flex-wrap:wrap}
-.search-wrap{max-width:100%;min-width:100%;order:-1}
+.left-zone{display:none!important}.app{flex-direction:column}.main{flex:1;padding-bottom:62px}
+.topbar{padding:0 12px;height:50px}.stats-bar{padding:12px 12px 0;gap:6px}
+.stat-card{padding:8px 10px;min-width:0;flex:1}.stat-value{font-size:14px}
+.stat-icon{width:28px;height:28px;border-radius:6px}.stat-icon svg{width:13px;height:13px}
+.toolbar{padding:10px 12px 0;gap:6px;flex-wrap:wrap}.search-wrap{max-width:100%;min-width:100%;order:-1}
 select.filter{flex:1;min-width:0;font-size:var(--fs-xs);padding:7px 22px 7px 8px}
-.table-wrap{padding:8px 12px 24px}
-td,th{padding:8px 8px;font-size:var(--fs-xs)}
-.td-name{gap:6px}
-.haw{width:28px;height:28px}.hav{width:22px;height:22px;font-size:8px}
-.nb .fn{font-size:var(--fs-xs)}
-.nb .em{font-size:8px}
-/* Right panel as mobile overlay */
+.table-wrap{padding:8px 12px 24px}td,th{padding:8px 8px;font-size:var(--fs-xs)}
 .right{position:fixed!important;top:0;right:0;bottom:0;left:0;width:100%!important;z-index:400;border-left:none}
 .right.shut{transform:translateX(100%);opacity:1;width:100%!important;pointer-events:none}
 .right:not(.shut){transform:translateX(0);pointer-events:all}
-.fg{grid-template-columns:1fr 1fr}
 .mob{position:fixed;bottom:0;left:0;right:0;height:62px;background:rgba(19,20,42,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,.08);display:flex;align-items:flex-start;padding-top:8px;z-index:500;padding-bottom:env(safe-area-inset-bottom,0px)}
 .mi{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;position:relative}
 .mi svg{width:20px;height:20px;fill:none;stroke:var(--c3);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.mi.on svg{stroke:#fff}
@@ -247,7 +269,19 @@ td,th{padding:8px 8px;font-size:var(--fs-xs)}
 <body>
 <div class="app">
 <div class="left-zone"><div class="left-top">
-<div class="rail"><div class="rail-top"><div class="rail-logo"><img src="https://madameloyal.github.io/homepage/LOGO_ROND_JAUNE.png" alt="Festiflow"></div></div><div class="rail-icons"><div class="rail-ev-wrap on" onclick="swEv(this)"><div class="rail-event" title="Paris XXL 2026"><span>PA</span></div></div><div class="rail-ev-wrap" onclick="swEv(this)"><div class="rail-event" title="Bordeaux ML × SONORA"><span>BO</span></div></div><div class="rail-add" title="Nouvel événement">+</div></div></div>
+<div class="rail"><div class="rail-top"><div class="rail-logo"><img src="https://madameloyal.github.io/homepage/LOGO_ROND_JAUNE.png" alt="Festiflow"></div></div><div class="rail-icons">
+<!-- "All contacts" button -->
+<div class="rail-tous on" onclick="swEv(null,this)" title="Tous les contacts">ALL</div>
+<div class="rail-sep"></div>
+<!-- Active events -->
+<div class="rail-ev-wrap" onclick="swEv('pa',this)" data-ev="pa"><div class="rail-event" title="Paris XXL 2026"><span>PA</span></div></div>
+<div class="rail-ev-wrap" onclick="swEv('bo',this)" data-ev="bo"><div class="rail-event" title="Bordeaux ML × SONORA 2026"><span>BO</span></div></div>
+<div class="rail-sep"></div>
+<!-- Archived events -->
+<div class="rail-ev-wrap archived" onclick="swEv('pa25',this)" data-ev="pa25"><div class="rail-event" title="Paris XXL 2025"><span>25</span></div></div>
+<div class="rail-sep"></div>
+<div class="rail-add" title="Nouvel événement">+</div>
+</div></div>
 <div class="nav"><div class="nav-head"><div class="nav-title">Festiflow</div><div class="nav-sub">madame loyal</div></div><div class="nav-list">
 <div class="nav-label">Général</div>
 <a class="ni" href="#"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 17.5h7M17.5 14v7"/></svg><span>Dashboard</span></a>
@@ -278,16 +312,22 @@ td,th{padding:8px 8px;font-size:var(--fs-xs)}
 
 <!-- MAIN -->
 <div class="main">
-<div class="topbar"><div class="topbar-left"><div class="page-title">Contacts</div><div class="page-count">489</div></div><div class="topbar-right"><button class="btn-secondary"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Import</button><button class="btn-primary" onclick="openC(null)"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Nouveau</button><div class="tb-toggle" onclick="document.getElementById('right').classList.toggle('shut')"><svg viewBox="0 0 24 24"><rect x="15" y="3" width="6" height="18" rx="1"/><path d="M3 12h8M8 8l4 4-4 4"/></svg></div></div></div>
-<div class="content">
-<div class="stats-bar">
-<div class="stat-card"><div class="stat-icon" style="background:rgba(88,101,242,.14)"><svg style="stroke:var(--blue)" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><div><div class="stat-value">489</div><div class="stat-label">Total</div></div></div>
-<div class="stat-card"><div class="stat-icon" style="background:rgba(59,165,93,.14)"><svg style="stroke:var(--green)" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div><div><div class="stat-value">213</div><div class="stat-label">Actifs PA26</div></div></div>
-<div class="stat-card"><div class="stat-icon" style="background:rgba(245,166,35,.14)"><svg style="stroke:var(--amber)" viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"/></svg></div><div><div class="stat-value">34</div><div class="stat-label">Nouveaux</div></div></div>
-<div class="stat-card"><div class="stat-icon" style="background:rgba(237,66,69,.14)"><svg style="stroke:var(--red)" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg></div><div><div class="stat-value">47</div><div class="stat-label">Incomplets</div></div></div>
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="page-title">Contacts</div>
+    <div class="page-count" id="pgCount">489</div>
+    <div class="ev-ctx" id="evCtx" style="display:none"></div>
+  </div>
+  <div class="topbar-right">
+    <button class="btn-secondary"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Import</button>
+    <button class="btn-primary" onclick="openC(null)"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Nouveau</button>
+    <div class="tb-toggle" onclick="document.getElementById('right').classList.toggle('shut')"><svg viewBox="0 0 24 24"><rect x="15" y="3" width="6" height="18" rx="1"/><path d="M3 12h8M8 8l4 4-4 4"/></svg></div>
+  </div>
 </div>
+<div class="content">
+<div class="stats-bar" id="statsBar"></div>
 <div class="toolbar"><div class="search-wrap"><svg class="search-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg><input type="text" placeholder="Rechercher nom, email, compétence…" id="si" oninput="filt()"></div><select class="filter" id="tf" onchange="filt()"><option value="">Équipe</option><option>Production</option><option>Technique Scène</option><option>Technique Site</option><option>Aménagement</option><option>Artistique</option><option>Communication</option><option>Scénographie</option><option>Performeur</option><option>Prestataire Externe</option><option>Partenariat</option><option>Hybride</option></select><select class="filter" id="cf" onchange="filt()"><option value="">Contrat</option><option>Intermittent</option><option>Auto-entrepreneur</option><option>Prestataire externe</option><option>CDI</option><option>CDD</option><option>Bénévole</option></select><select class="filter" id="sf" onchange="filt()"><option value="">Statut</option><option value="complete">Complet</option><option value="partial">Incomplet</option><option value="new">Nouveau</option><option value="verify">À vérifier</option></select><div class="filter-count" id="fc"></div></div>
-<div class="table-wrap"><table><thead><tr><th onclick="srt('nom')">Nom</th><th onclick="srt('equipe')">Équipe</th><th onclick="srt('ville')">Ville</th><th onclick="srt('contrat_type')">Contrat</th><th onclick="srt('status')">Statut</th><th>Tags</th></tr></thead><tbody id="tb"></tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th onclick="srt('nom')">Nom</th><th onclick="srt('equipe')">Équipe</th><th onclick="srt('ville')">Ville</th><th onclick="srt('contrat_type')">Contrat</th><th onclick="srt('status')">Statut</th><th>Compétences</th><th>Profil</th></tr></thead><tbody id="tb"></tbody></table></div>
 </div></div>
 
 <!-- RIGHT SIDEBAR -->
@@ -295,86 +335,441 @@ td,th{padding:8px 8px;font-size:var(--fs-xs)}
 <div id="rEmpty"><div class="rt-head"><div class="rt-title">Détail contact</div></div><div class="r-empty"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg><p>Cliquez sur un contact<br>pour voir ses détails</p></div></div>
 <div id="rActive" style="display:none;flex-direction:column;height:100%">
 <div class="rt-head"><div class="rt-title" id="rpT">Contact</div><div class="rt-btns"><div class="tb-b" onclick="closeC()"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></div></div></div>
-<div class="rp-pf"><div class="rp-aw"><div class="rp-av" id="rpA"></div><div class="rp-ar"><svg viewBox="0 0 100 100" fill="none"><defs><linearGradient id="rpg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#d4522a"/><stop offset="100%" stop-color="#9b59b6"/></linearGradient></defs><polygon points="50,2 93,25 93,75 50,98 7,75 7,25" stroke="url(#rpg)" stroke-width="1.8"/></svg></div></div><div class="rp-info"><div class="rp-name" id="rpN"></div><div class="rp-meta" id="rpM"></div></div></div>
-<div class="rp-tabs"><div class="rp-tab active" onclick="rpSw('id',this)">Identité</div><div class="rp-tab" onclick="rpSw('ev',this)">Événements</div><div class="rp-tab" onclick="rpSw('ad',this)">Admin 🔒</div><div class="rp-tab" onclick="rpSw('dc',this)">Docs</div></div>
-<div class="rp-body">
-<div class="rp-panel active" id="rp-id">
-<div class="fs"><div class="fs-t">Personnel</div><div class="fg"><div class="f"><label>Prénom</label><input id="fp"></div><div class="f"><label>Nom</label><input id="fn"></div><div class="f"><label>Tél</label><input type="tel" id="ft"></div><div class="f"><label>Email</label><input type="email" id="fe"></div><div class="f"><label>Naissance</label><input type="text" id="fd" placeholder="JJ/MM/AAAA"></div><div class="f"><label>Ville</label><input id="fv"></div><div class="f f2"><label>Adresse</label><input id="fa"></div><div class="f"><label>CP</label><input id="fz"></div><div class="f"><label>Pays</label><input id="fy"></div></div></div>
-<div class="fs"><div class="fs-t">Contrat & Logistique</div><div class="fg"><div class="f"><label>Contrat</label><select id="fc2"><option value="">—</option><option>Intermittent</option><option>Auto-entrepreneur</option><option>CDI</option><option>CDD</option><option>Prestataire externe</option><option>Bénévole</option></select></div><div class="f"><label>Régime</label><select id="fr"><option>Pas de régime</option><option>Végétarien</option><option>Vegan</option><option>Halal</option><option>Casher</option><option>Sans gluten</option></select></div><div class="f f2"><label>Carte SNCF</label><input id="fs2" placeholder="N° carte avantage"></div></div></div>
-<div class="fs"><div class="fs-t">Compétences</div><div id="tw"></div><div style="display:flex;gap:6px;margin-top:8px;margin-bottom:6px"><input type="text" id="customTag" placeholder="Ajouter une compétence…" style="flex:1;padding:6px 9px;border:1px solid var(--c4);border-radius:6px;background:var(--frame-input);font-family:'Outfit',sans-serif;font-size:var(--fs-xs);color:var(--c1);outline:none;min-width:0" onkeydown="if(event.key==='Enter'){addT(this.value);this.value=''}"><button onclick="addT(document.getElementById('customTag').value);document.getElementById('customTag').value=''" style="padding:6px 12px;border-radius:6px;border:1px solid var(--accent);background:rgba(212,82,42,.1);color:var(--accent);font-family:'Outfit',sans-serif;font-size:var(--fs-xs);font-weight:var(--fw-s);cursor:pointer;white-space:nowrap;transition:background .14s" onmouseover="this.style.background='rgba(212,82,42,.2)'" onmouseout="this.style.background='rgba(212,82,42,.1)'">+ Ajouter</button></div><div class="tg-btns"><button class="tg-b" onclick="addT('Électricien')">Élec</button><button class="tg-b" onclick="addT('Régisseur')">Régie</button><button class="tg-b" onclick="addT('Photographe')">Photo</button><button class="tg-b" onclick="addT('Vidéaste')">Vidéo</button><button class="tg-b" onclick="addT('Son')">Son</button><button class="tg-b" onclick="addT('Lumière')">Light</button><button class="tg-b" onclick="addT('Runner')">Runner</button><button class="tg-b" onclick="addT('Chauffeur')">Chauff</button><button class="tg-b" onclick="addT('Scénographe')">Scéno</button><button class="tg-b" onclick="addT('Barman')">Bar</button></div></div>
-<div class="fs"><div class="fs-t">Notes</div><div class="fg fg1"><div class="f f2"><textarea id="fno" placeholder="Notes internes…"></textarea></div></div></div>
+<div class="rp-pf">
+  <div class="rp-aw"><div class="rp-av" id="rpA"></div><div class="rp-ar"><svg viewBox="0 0 100 100" fill="none"><defs><linearGradient id="rpg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#d4522a"/><stop offset="100%" stop-color="#9b59b6"/></linearGradient></defs><polygon points="50,2 93,25 93,75 50,98 7,75 7,25" stroke="url(#rpg)" stroke-width="1.8"/></svg></div></div>
+  <div class="rp-info">
+    <div class="rp-name" id="rpN"></div>
+    <div class="rp-meta" id="rpM"></div>
+    <div class="rp-compl" id="rpCompl"><div class="rp-compl-bar"><div class="rp-compl-fill" id="rpComplFill"></div></div><div class="rp-compl-pct" id="rpComplPct"></div></div>
+    <div class="rp-actions" id="rpActions">
+      <button class="rp-act" onclick="copyML(1)"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>Magic link</button>
+      <button class="rp-act" onclick="copyML(2)"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>Envoyer</button>
+    </div>
+  </div>
 </div>
-<div class="rp-panel" id="rp-ev"><div class="fs"><div class="fs-t">Historique</div><div id="eH"></div></div></div>
-<div class="rp-panel" id="rp-ad">
-<div class="fs"><div class="fs-t">Rémunération</div>
-<div class="fg">
-<div class="f f2"><label>Taux A — Montage / Démontage</label><div class="rate-row"><input type="number" id="fra" placeholder="350"><select id="frau"><option>€ / jour</option><option>€ / heure</option><option>€ / cachet</option><option>Forfait</option></select></div></div>
-<div class="f f2"><label>Taux B — Exploitation / Show</label><div class="rate-row"><input type="number" id="frb" placeholder="525"><select id="frbu"><option>€ / jour</option><option>€ / heure</option><option>€ / cachet</option><option>Forfait</option></select></div></div>
-<div class="f f2"><label>Note rémunération</label><textarea id="frn" placeholder="Ex: Forfait global + remboursement frais km…" style="min-height:40px"></textarea></div>
-</div></div>
-<div class="admin-lock"><div class="admin-lock-hd">🔒 Accès production uniquement</div><div class="fg"><div class="f f2"><label>N° sécu</label><input placeholder="1 81 09 75 115 097 48" disabled></div><div class="f f2"><label>IBAN</label><input placeholder="FR76 1142 5009 …" disabled></div><div class="f f2"><label>N° congé spectacle</label><input placeholder="D110449" disabled></div><div class="f f2"><label>Lieu naissance</label><input placeholder="Paris 12ème" disabled></div></div></div><p style="text-align:center;font-size:var(--fs-xs);color:var(--c3);opacity:.5;padding:12px 0">Disponible version serveur</p></div>
-<div class="rp-panel" id="rp-dc"><div class="fs"><div class="fs-t">Documents</div><div style="border:1.5px dashed var(--c4);border-radius:8px;padding:18px;text-align:center;cursor:pointer" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--c4)'"><div style="font-size:var(--fs-sm);color:var(--c3)">Glisser ou cliquer pour uploader</div><div style="font-size:var(--fs-xs);color:var(--c3);opacity:.5;margin-top:3px">PDF, JPG, PNG · 10 MB max</div></div></div></div>
-</div>
+<div class="rp-tabs" id="rpTabs"></div>
+<div class="rp-body" id="rpBody"></div>
 <div class="rp-footer"><button class="btn-sm-d">Supprimer</button><button class="btn-primary" onclick="closeC()"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Enregistrer</button></div>
 </div></div>
 </div>
 <div class="mob"><div class="mi"><svg viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1z"/></svg><small>Home</small></div><div class="mi"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 17.5h7M17.5 14v7"/></svg><small>Dash</small></div><div class="mi on"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><small>Contacts</small></div><div class="mi"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg><small>Modules</small></div><div class="mi"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg><small>Profil</small></div></div>
+
 <script>
-const D=[
-{contact_id:1,prenom:'Sébastien',nom:'Janvier',tel:'+33664234321',email:'sebastienjanvier33@gmail.com',date_naissance:'1978-09-27',ville:'Bordeaux',adresse:'14 rue des Chartrons',code_postal:'33000',pays:'France',regime_alimentaire:'Pas de régime',contrat_type:'Prestataire externe',carte_sncf:'',tags:[{name:'Électricien',level:5},{name:'Lumière',level:4}],notes:'Dir technique expérimenté',status:'complete',rate_a:450,rate_a_unit:'€ / jour',rate_b:600,rate_b_unit:'€ / jour',rate_note:'Forfait global inclus déplacements',events:[{event:'Paris XXL 2026',team:'Technique Scène',role:'Direction Technique',dates:'07→17 mars 2026'},{event:'Bordeaux 2025',team:'Technique Scène',role:'Direction Technique',dates:'14→20 juin 2025'},{event:'Paris XXL 2025',team:'Technique Scène',role:'Direction Technique',dates:'08→18 mars 2025'},{event:'Paris XXL 2024',team:'Technique Scène',role:'Régisseur Général',dates:'14→22 mars 2024'}]},
-{contact_id:2,prenom:'Karen',nom:'Laloum',tel:'+33614950200',email:'karen@agence-episode.fr',date_naissance:'1993-04-08',ville:'Paris',adresse:'42 rue du Fbg St-Antoine',code_postal:'75012',pays:'France',regime_alimentaire:'Végétarien',contrat_type:'Prestataire externe',carte_sncf:'',tags:[{name:'Régisseur',level:5}],notes:'',status:'partial',rate_a:400,rate_a_unit:'€ / jour',rate_b:550,rate_b_unit:'€ / jour',rate_note:'',events:[{event:'Paris XXL 2026',team:'Production',role:'Directrice Production',dates:'07→17 mars 2026'},{event:'Bordeaux 2025',team:'Production',role:'Directrice Production',dates:'14→20 juin 2025'},{event:'Paris XXL 2025',team:'Production',role:'Directrice Production',dates:'08→18 mars 2025'},{event:'Sonora 2024',team:'Production',role:'Chargée de prod',dates:'02→05 août 2024'},{event:'Paris XXL 2024',team:'Production',role:'Chargée de prod',dates:'14→22 mars 2024'}]},
-{contact_id:3,prenom:'Stéphane',nom:'Harrouch',tel:'+33670615501',email:'stephane@regies-productions.com',date_naissance:'1969-05-06',ville:'Montreuil',adresse:'8 rue de la Solidarité',code_postal:'93100',pays:'France',regime_alimentaire:'Halal',contrat_type:'Auto-entrepreneur',carte_sncf:'',tags:[{name:'Électricien',level:4},{name:'Régisseur',level:5}],notes:'',status:'complete',rate_a:380,rate_a_unit:'€ / jour',rate_b:500,rate_b_unit:'€ / jour',rate_note:'',events:[{event:'Paris XXL 2026',team:'Technique Site',role:'Directeur Technique',dates:'07→17 mars 2026'},{event:'Paris XXL 2025',team:'Technique Site',role:'Directeur Technique',dates:'08→18 mars 2025'},{event:'Sonora 2024',team:'Technique Site',role:'Régisseur Site',dates:'02→05 août 2024'}]},
-{contact_id:4,prenom:'Pierre',nom:'Kestemont',tel:'+33612442799',email:'p.kestemont@gmail.com',date_naissance:'1989-01-12',ville:'Bruxelles',adresse:'Rue de la Loi 22',code_postal:'1000',pays:'Belgique',regime_alimentaire:'Pas de régime',contrat_type:'CDI',carte_sncf:'Liberté',tags:[{name:'Régisseur',level:4}],notes:'',status:'complete',rate_a:350,rate_a_unit:'€ / jour',rate_b:450,rate_b_unit:'€ / jour',rate_note:'',events:[{event:'Paris XXL 2026',team:'Aménagement',role:'Régisseur Général Site',dates:'07→17 mars 2026'},{event:'Bordeaux 2025',team:'Aménagement',role:'Régisseur Général Site',dates:'14→20 juin 2025'}]},
-{contact_id:5,prenom:'Camille',nom:'Faurie',tel:'+33658428615',email:'camillefaurie.regie@gmail.com',date_naissance:'1990-03-29',ville:'Lyon',adresse:'15 rue Mercière',code_postal:'69002',pays:'France',regime_alimentaire:'Vegan',contrat_type:'Intermittent',carte_sncf:'Avantage Jeune',tags:[{name:'Régisseur',level:3}],notes:'',status:'complete',rate_a:280,rate_a_unit:'€ / jour',rate_b:350,rate_b_unit:'€ / jour',rate_note:'',events:[{event:'Paris XXL 2026',team:'Aménagement',role:'Régisseuse Générale',dates:'07→17 mars 2026'},{event:'Bordeaux 2025',team:'Aménagement',role:'Régisseuse Générale',dates:'14→20 juin 2025'}]},
-{contact_id:6,prenom:'Sarah',nom:'Renard',tel:'+33617860589',email:'sarah@agence-episode.fr',date_naissance:'1994-05-20',ville:'Paris',adresse:'9 rue de Rivoli',code_postal:'75004',pays:'France',regime_alimentaire:'Pas de régime',contrat_type:'Auto-entrepreneur',carte_sncf:'',tags:[],notes:'Directrice générale',status:'partial',rate_a:0,rate_a_unit:'€ / jour',rate_b:0,rate_b_unit:'€ / jour',rate_note:'Forfait mensuel',events:[{event:'Paris XXL 2026',team:'Production',role:'Directrice Festival',dates:'07→17 mars 2026'},{event:'Bordeaux 2025',team:'Production',role:'Directrice Festival',dates:'14→20 juin 2025'},{event:'Paris XXL 2024',team:'Production',role:'Directrice Festival',dates:'14→22 mars 2024'}]},
-{contact_id:7,prenom:'Pierro',nom:'Le Moing',tel:'+33667219606',email:'pierrolemoing@gmail.com',date_naissance:'1983-08-26',ville:'Nantes',adresse:'3 passage Pommeraye',code_postal:'44000',pays:'France',regime_alimentaire:'Pas de régime',contrat_type:'Intermittent',carte_sncf:'',tags:[{name:'Scénographe',level:3}],notes:'Premier événement',status:'new',rate_a:300,rate_a_unit:'€ / jour',rate_b:400,rate_b_unit:'€ / jour',rate_note:'',events:[{event:'Paris XXL 2026',team:'Scénographie',role:'Chef de Projet',dates:'07→17 mars 2026'}]},
-{contact_id:8,prenom:'Mehdi',nom:'Gautheur',tel:'+33683761033',email:'son.mmeloyal@gmail.com',date_naissance:'1980-06-15',ville:'Toulouse',adresse:'24 rue Saint-Rome',code_postal:'31000',pays:'France',regime_alimentaire:'Halal',contrat_type:'Intermittent',carte_sncf:'Liberté',tags:[{name:'Son',level:5},{name:'Régisseur',level:3}],notes:'',status:'complete',rate_a:350,rate_a_unit:'€ / jour',rate_b:525,rate_b_unit:'€ / cachet',rate_note:'',events:[{event:'Paris XXL 2026',team:'Technique Scène',role:'Superviseur Son',dates:'07→17 mars 2026'},{event:'Bordeaux 2025',team:'Technique Scène',role:'Superviseur Son',dates:'14→20 juin 2025'},{event:'Paris XXL 2024',team:'Technique Scène',role:'Ingénieur Son',dates:'14→22 mars 2024'}]},
-{contact_id:9,prenom:'Nicolas',nom:'Colle',tel:'+33663381214',email:'colle.nicolas@gmail.com',date_naissance:'1984-05-22',ville:'Marseille',adresse:'18 quai de Rive Neuve',code_postal:'13007',pays:'France',regime_alimentaire:'Pas de régime',contrat_type:'Auto-entrepreneur',carte_sncf:'Avantage Week-end',tags:[{name:'Lumière',level:5}],notes:'',status:'complete',rate_a:320,rate_a_unit:'€ / jour',rate_b:480,rate_b_unit:'€ / jour',rate_note:'',events:[{event:'Paris XXL 2026',team:'Technique Scène',role:'Superviseur Light',dates:'07→17 mars 2026'},{event:'Paris XXL 2025',team:'Technique Scène',role:'Superviseur Light',dates:'08→18 mars 2025'}]},
-{contact_id:10,prenom:'Grégoire',nom:'Germain',tel:'',email:'greg@agence-episode.fr',date_naissance:'',ville:'Paris',adresse:'',code_postal:'',pays:'France',regime_alimentaire:'Pas de régime',contrat_type:'Auto-entrepreneur',carte_sncf:'',tags:[{name:'Photographe',level:4},{name:'Vidéaste',level:3}],notes:'Profil incomplet',status:'verify',rate_a:0,rate_a_unit:'€ / jour',rate_b:0,rate_b_unit:'€ / jour',rate_note:'À négocier',events:[{event:'Paris XXL 2026',team:'Communication',role:'Dir. Communication',dates:'07→17 mars 2026'},{event:'Paris XXL 2025',team:'Communication',role:'Dir. Communication',dates:'08→18 mars 2025'}]},
-{contact_id:11,prenom:'Hippolyte',nom:'Court',tel:'+33695088738',email:'hippolyte@agence-episode.fr',date_naissance:'2001-05-06',ville:'Paris',adresse:'',code_postal:'75011',pays:'France',regime_alimentaire:'Pas de régime',contrat_type:'Auto-entrepreneur',carte_sncf:'',tags:[],notes:'',status:'new',rate_a:0,rate_a_unit:'€ / jour',rate_b:0,rate_b_unit:'€ / jour',rate_note:'',events:[{event:'Paris XXL 2026',team:'Artistique',role:'Resp. Prod/Log',dates:'07→17 mars 2026'}]},
-{contact_id:12,prenom:'Gilles',nom:'Chanu',tel:'+33689734582',email:'gilleschanu@icloud.com',date_naissance:'1972-03-13',ville:'Villepinte',adresse:'5 allée des Roses',code_postal:'93420',pays:'France',regime_alimentaire:'Pas de régime',contrat_type:'Intermittent',carte_sncf:'',tags:[{name:'Électricien',level:5}],notes:'Chef électro fiable',status:'complete',rate_a:300,rate_a_unit:'€ / jour',rate_b:420,rate_b_unit:'€ / jour',rate_note:'',events:[{event:'Paris XXL 2026',team:'Technique Site',role:'Chef Électro',dates:'07→17 mars 2026'},{event:'Bordeaux 2025',team:'Technique Site',role:'Chef Électro',dates:'14→20 juin 2025'},{event:'Paris XXL 2024',team:'Technique Site',role:'Électricien',dates:'14→22 mars 2024'}]},
-{contact_id:13,prenom:'Miad',nom:'Bensalem',tel:'+33672904111',email:'miad.bar@gmail.com',date_naissance:'1995-11-02',ville:'Paris',adresse:'66 bd de Belleville',code_postal:'75020',pays:'France',regime_alimentaire:'Halal',contrat_type:'Auto-entrepreneur',carte_sncf:'',tags:[{name:'Runner',level:2}],notes:'Resp. bar',status:'partial',rate_a:150,rate_a_unit:'€ / jour',rate_b:200,rate_b_unit:'€ / jour',rate_note:'',events:[{event:'Paris XXL 2026',team:'Production',role:'Chef de Bar',dates:'07→17 mars 2026'},{event:'Bordeaux 2025',team:'Production',role:'Barman',dates:'14→20 juin 2025'}]},
-{contact_id:14,prenom:'Coline',nom:'Vasseur',tel:'+33645123890',email:'coline.vasseur@live.fr',date_naissance:'1997-07-14',ville:'Lille',adresse:'12 rue de Gand',code_postal:'59000',pays:'France',regime_alimentaire:'Végétarien',contrat_type:'Intermittent',carte_sncf:'Avantage Jeune',tags:[],notes:'',status:'complete',rate_a:250,rate_a_unit:'€ / cachet',rate_b:400,rate_b_unit:'€ / cachet',rate_note:'',events:[{event:'Paris XXL 2026',team:'Performeur',role:'Chorégraphe',dates:'07→17 mars 2026'},{event:'Bordeaux 2025',team:'Performeur',role:'Performeuse',dates:'14→20 juin 2025'}]},
-{contact_id:15,prenom:'Margaux',nom:'Delattre',tel:'+33678451209',email:'margaux.delattre@outlook.com',date_naissance:'1991-02-18',ville:'Paris',adresse:'88 av Daumesnil',code_postal:'75012',pays:'France',regime_alimentaire:'Sans gluten',contrat_type:'CDD',carte_sncf:'Liberté',tags:[],notes:'Partenariats',status:'complete',rate_a:0,rate_a_unit:'Forfait',rate_b:0,rate_b_unit:'Forfait',rate_note:'Salaire mensuel CDD',events:[{event:'Paris XXL 2026',team:'Partenariat',role:'Resp. Partenariats',dates:'07→17 mars 2026'}]},
-{contact_id:16,prenom:'Alexandre',nom:'Morel',tel:'+33690127453',email:'alex.morel@gmail.com',date_naissance:'1988-12-03',ville:'Strasbourg',adresse:'7 quai des Bateliers',code_postal:'67000',pays:'France',regime_alimentaire:'Pas de régime',contrat_type:'Auto-entrepreneur',carte_sncf:'',tags:[{name:'Photographe',level:4}],notes:'',status:'partial',rate_a:300,rate_a_unit:'€ / jour',rate_b:450,rate_b_unit:'€ / jour',rate_note:'',events:[{event:'Paris XXL 2026',team:'Artistique',role:'Dir. Artistique',dates:'07→17 mars 2026'}]},
-{contact_id:17,prenom:'Lola',nom:'Garnier',tel:'+33654789012',email:'lola.garnier@agence-episode.fr',date_naissance:'1996-09-22',ville:'Paris',adresse:'',code_postal:'75003',pays:'France',regime_alimentaire:'Vegan',contrat_type:'CDD',carte_sncf:'',tags:[{name:'Vidéaste',level:4},{name:'Photographe',level:3}],notes:'',status:'complete',rate_a:0,rate_a_unit:'Forfait',rate_b:0,rate_b_unit:'Forfait',rate_note:'Salaire mensuel',events:[{event:'Paris XXL 2026',team:'Communication',role:'Vidéaste / Photo',dates:'07→17 mars 2026'},{event:'Bordeaux 2025',team:'Communication',role:'Vidéaste',dates:'14→20 juin 2025'}]},
-{contact_id:18,prenom:'Julien',nom:'Petit',tel:'+33601234567',email:'julien.petit@gmail.com',date_naissance:'1985-06-30',ville:'Rennes',adresse:'14 rue Le Bastard',code_postal:'35000',pays:'France',regime_alimentaire:'Pas de régime',contrat_type:'Prestataire externe',carte_sncf:'',tags:[{name:'Son',level:4}],notes:'Net&Green',status:'complete',rate_a:350,rate_a_unit:'€ / jour',rate_b:500,rate_b_unit:'€ / jour',rate_note:'Facture société',events:[{event:'Paris XXL 2026',team:'Prestataire Externe',role:'Ingé Son FOH',dates:'07→17 mars 2026'}]},
-{contact_id:19,prenom:'Amira',nom:'Benali',tel:'+33678901234',email:'amira.b@live.fr',date_naissance:'1999-01-25',ville:'Lyon',adresse:'',code_postal:'69003',pays:'France',regime_alimentaire:'Halal',contrat_type:'Bénévole',carte_sncf:'Avantage Jeune',tags:[{name:'Runner',level:1}],notes:'',status:'new',rate_a:0,rate_a_unit:'€ / jour',rate_b:0,rate_b_unit:'€ / jour',rate_note:'Bénévole — défraiement uniquement',events:[{event:'Paris XXL 2026',team:'Hybride',role:'Runner Général',dates:'13→14 mars 2026'}]},
-{contact_id:20,prenom:'Thomas',nom:'Durand',tel:'+33687654321',email:'thomas.durand@outlook.fr',date_naissance:'1992-08-11',ville:'Villepinte',adresse:'22 av Division Leclerc',code_postal:'93420',pays:'France',regime_alimentaire:'Pas de régime',contrat_type:'Intermittent',carte_sncf:'',tags:[{name:'Électricien',level:3},{name:'Chauffeur',level:2}],notes:'Local',status:'verify',rate_a:250,rate_a_unit:'€ / jour',rate_b:350,rate_b_unit:'€ / jour',rate_note:'',events:[{event:'Paris XXL 2026',team:'Technique Site',role:'Électricien',dates:'07→17 mars 2026'},{event:'Paris XXL 2024',team:'Technique Site',role:'Stagiaire',dates:'14→22 mars 2024'}]},
+/* ═══════════════════════════════════════
+   EVENTS — mirrors future EVENTS table
+   ═══════════════════════════════════════ */
+const EVENTS = {
+  pa:   { id:'pa',   name:'Paris XXL 2026',           short:'PA26', dates:'07→17 mars 2026',  status:'active' },
+  bo:   { id:'bo',   name:'Bordeaux ML × SONORA 2026',short:'BO26', dates:'19→22 juin 2026',  status:'active' },
+  pa25: { id:'pa25', name:'Paris XXL 2025',           short:'PA25', dates:'08→18 mars 2025',  status:'archived' },
+};
+
+/* ═══════════════════════════════════════
+   CONTACTS — mirrors future CONTACTS table
+   Each contact has permanent data + event_assignments array
+   ═══════════════════════════════════════ */
+const D = [
+  {contact_id:1,prenom:'Sébastien',nom:'Janvier',tel:'+33664234321',email:'sebastienjanvier33@gmail.com',date_naissance:'1978-09-27',ville:'Bordeaux',adresse:'14 rue des Chartrons',code_postal:'33000',pays:'France',regime_alimentaire:'Pas de régime',contrat_type:'Prestataire externe',carte_sncf:'',vehicule:true,local:false,tags:[{name:'Électricien',level:5},{name:'Lumière',level:4}],notes:'Dir technique très expérimenté',status:'complete',rate_a:450,rate_a_unit:'€ / jour',rate_b:600,rate_b_unit:'€ / jour',rate_note:'Forfait global inclus déplacements',
+    assignments:[
+      {event_id:'pa',team:'Technique Scène',role:'Direction Technique',status:'confirmed',transport_aller:'Bordeaux > Paris Montparnasse',transport_aller_date:'06/03/2026',transport_retour:'Paris Montparnasse > Bordeaux',transport_retour_date:'18/03/2026',hebergement:'Hotel Holiday Inn',chambre_pref:'Mehdi Gautheur',autonome_transport:false,autonome_hebergement:false,magic_link_sent:true,magic_link_completed:true},
+      {event_id:'pa25',team:'Technique Scène',role:'Direction Technique',status:'completed',transport_aller:'Bordeaux > Paris',transport_aller_date:'07/03/2025',transport_retour:'Paris > Bordeaux',transport_retour_date:'19/03/2025',hebergement:'Hotel Holiday Inn',chambre_pref:'',autonome_transport:false,autonome_hebergement:false,magic_link_sent:true,magic_link_completed:true},
+    ]},
+  {contact_id:2,prenom:'Karen',nom:'Laloum',tel:'+33614950200',email:'karen@agence-episode.fr',date_naissance:'1993-04-08',ville:'Paris',adresse:'42 rue du Fbg St-Antoine',code_postal:'75012',pays:'France',regime_alimentaire:'Végétarien',contrat_type:'Prestataire externe',carte_sncf:'',vehicule:true,local:true,tags:[{name:'Régisseur',level:5}],notes:'',status:'partial',rate_a:400,rate_a_unit:'€ / jour',rate_b:550,rate_b_unit:'€ / jour',rate_note:'',
+    assignments:[
+      {event_id:'pa',team:'Production',role:'Directrice Production',status:'confirmed',transport_aller:'',transport_aller_date:'',transport_retour:'',transport_retour_date:'',hebergement:'',chambre_pref:'',autonome_transport:true,autonome_hebergement:true,magic_link_sent:true,magic_link_completed:false},
+      {event_id:'bo',team:'Production',role:'Directrice Production',status:'invited',transport_aller:'',transport_aller_date:'',transport_retour:'',transport_retour_date:'',hebergement:'',chambre_pref:'',autonome_transport:false,autonome_hebergement:false,magic_link_sent:false,magic_link_completed:false},
+      {event_id:'pa25',team:'Production',role:'Directrice Production',status:'completed',transport_aller:'',transport_aller_date:'',transport_retour:'',transport_retour_date:'',hebergement:'',chambre_pref:'',autonome_transport:true,autonome_hebergement:true,magic_link_sent:true,magic_link_completed:true},
+    ]},
+  {contact_id:3,prenom:'Stéphane',nom:'Harrouch',tel:'+33670615501',email:'stephane@regies-productions.com',date_naissance:'1969-05-06',ville:'Montreuil',adresse:'8 rue de la Solidarité',code_postal:'93100',pays:'France',regime_alimentaire:'Halal',contrat_type:'Auto-entrepreneur',carte_sncf:'',vehicule:true,local:true,tags:[{name:'Électricien',level:4},{name:'Régisseur',level:5}],notes:'',status:'complete',rate_a:380,rate_a_unit:'€ / jour',rate_b:500,rate_b_unit:'€ / jour',rate_note:'',
+    assignments:[{event_id:'pa',team:'Technique Site',role:'Directeur Technique',status:'confirmed',transport_aller:'',transport_aller_date:'',transport_retour:'',transport_retour_date:'',hebergement:'',chambre_pref:'',autonome_transport:true,autonome_hebergement:true,magic_link_sent:true,magic_link_completed:true},{event_id:'pa25',team:'Technique Site',role:'Directeur Technique',status:'completed',transport_aller:'',transport_aller_date:'',transport_retour:'',transport_retour_date:'',hebergement:'',chambre_pref:'',autonome_transport:true,autonome_hebergement:true,magic_link_sent:true,magic_link_completed:true}]},
+  {contact_id:4,prenom:'Pierre',nom:'Kestemont',tel:'+33612442799',email:'p.kestemont@gmail.com',date_naissance:'1989-01-12',ville:'Bruxelles',adresse:'Rue de la Loi 22',code_postal:'1000',pays:'Belgique',regime_alimentaire:'Pas de régime',contrat_type:'CDI',carte_sncf:'Liberté',vehicule:false,local:false,tags:[{name:'Régisseur',level:4}],notes:'',status:'complete',rate_a:350,rate_a_unit:'€ / jour',rate_b:450,rate_b_unit:'€ / jour',rate_note:'',
+    assignments:[{event_id:'pa',team:'Aménagement',role:'Régisseur Général Site',status:'confirmed',transport_aller:'Bruxelles Midi > Paris Nord',transport_aller_date:'06/03/2026',transport_retour:'Paris Nord > Bruxelles Midi',transport_retour_date:'18/03/2026',hebergement:'Hotel Holiday Inn',chambre_pref:'Camille Faurie',autonome_transport:false,autonome_hebergement:false,magic_link_sent:true,magic_link_completed:true},{event_id:'bo',team:'Aménagement',role:'Régisseur Général Site',status:'invited',transport_aller:'',transport_aller_date:'',transport_retour:'',transport_retour_date:'',hebergement:'',chambre_pref:'',autonome_transport:false,autonome_hebergement:false,magic_link_sent:false,magic_link_completed:false}]},
+  {contact_id:5,prenom:'Camille',nom:'Faurie',tel:'+33658428615',email:'camillefaurie.regie@gmail.com',date_naissance:'1990-03-29',ville:'Lyon',adresse:'15 rue Mercière',code_postal:'69002',pays:'France',regime_alimentaire:'Vegan',contrat_type:'Intermittent',carte_sncf:'Avantage Jeune',vehicule:false,local:false,tags:[{name:'Régisseur',level:3}],notes:'',status:'complete',rate_a:280,rate_a_unit:'€ / jour',rate_b:350,rate_b_unit:'€ / jour',rate_note:'',
+    assignments:[{event_id:'pa',team:'Aménagement',role:'Régisseuse Générale',status:'confirmed',transport_aller:'Lyon Part-Dieu > Paris Gare de Lyon',transport_aller_date:'06/03/2026',transport_retour:'Paris Gare de Lyon > Lyon Part-Dieu',transport_retour_date:'18/03/2026',hebergement:'Hotel Holiday Inn',chambre_pref:'Pierre Kestemont',autonome_transport:false,autonome_hebergement:false,magic_link_sent:true,magic_link_completed:true}]},
+  {contact_id:6,prenom:'Sarah',nom:'Renard',tel:'+33617860589',email:'sarah@agence-episode.fr',date_naissance:'1994-05-20',ville:'Paris',adresse:'9 rue de Rivoli',code_postal:'75004',pays:'France',regime_alimentaire:'Pas de régime',contrat_type:'Auto-entrepreneur',carte_sncf:'',vehicule:true,local:true,tags:[],notes:'Directrice générale du festival',status:'partial',rate_a:0,rate_a_unit:'Forfait',rate_b:0,rate_b_unit:'Forfait',rate_note:'Forfait mensuel',
+    assignments:[{event_id:'pa',team:'Production',role:'Directrice Festival',status:'confirmed',transport_aller:'',transport_aller_date:'',transport_retour:'',transport_retour_date:'',hebergement:'',chambre_pref:'',autonome_transport:true,autonome_hebergement:true,magic_link_sent:true,magic_link_completed:true},{event_id:'bo',team:'Production',role:'Directrice Festival',status:'confirmed',transport_aller:'',transport_aller_date:'',transport_retour:'',transport_retour_date:'',hebergement:'',chambre_pref:'',autonome_transport:false,autonome_hebergement:false,magic_link_sent:false,magic_link_completed:false}]},
+  {contact_id:7,prenom:'Pierro',nom:'Le Moing',tel:'+33667219606',email:'pierrolemoing@gmail.com',date_naissance:'1983-08-26',ville:'Nantes',adresse:'3 passage Pommeraye',code_postal:'44000',pays:'France',regime_alimentaire:'Pas de régime',contrat_type:'Intermittent',carte_sncf:'',vehicule:false,local:false,tags:[{name:'Scénographe',level:3}],notes:'Premier événement ML',status:'new',rate_a:300,rate_a_unit:'€ / jour',rate_b:400,rate_b_unit:'€ / jour',rate_note:'',
+    assignments:[{event_id:'pa',team:'Scénographie',role:'Chef de Projet',status:'confirmed',transport_aller:'Nantes > Paris Montparnasse',transport_aller_date:'07/03/2026',transport_retour:'Paris Montparnasse > Nantes',transport_retour_date:'18/03/2026',hebergement:'Hotel Holiday Inn',chambre_pref:'',autonome_transport:false,autonome_hebergement:false,magic_link_sent:true,magic_link_completed:false}]},
+  {contact_id:8,prenom:'Mehdi',nom:'Gautheur',tel:'+33683761033',email:'son.mmeloyal@gmail.com',date_naissance:'1980-06-15',ville:'Toulouse',adresse:'24 rue Saint-Rome',code_postal:'31000',pays:'France',regime_alimentaire:'Halal',contrat_type:'Intermittent',carte_sncf:'Liberté',vehicule:false,local:false,tags:[{name:'Son',level:5},{name:'Régisseur',level:3}],notes:'',status:'complete',rate_a:350,rate_a_unit:'€ / jour',rate_b:525,rate_b_unit:'€ / cachet',rate_note:'',
+    assignments:[{event_id:'pa',team:'Technique Scène',role:'Superviseur Son',status:'confirmed',transport_aller:'Toulouse Matabiau > Paris Montparnasse',transport_aller_date:'06/03/2026',transport_retour:'Paris Montparnasse > Toulouse',transport_retour_date:'18/03/2026',hebergement:'Hotel Holiday Inn',chambre_pref:'Sébastien Janvier',autonome_transport:false,autonome_hebergement:false,magic_link_sent:true,magic_link_completed:true},{event_id:'pa25',team:'Technique Scène',role:'Superviseur Son',status:'completed',transport_aller:'Toulouse > Paris',transport_aller_date:'',transport_retour:'Paris > Toulouse',transport_retour_date:'',hebergement:'Hotel Holiday Inn',chambre_pref:'',autonome_transport:false,autonome_hebergement:false,magic_link_sent:true,magic_link_completed:true}]},
+  {contact_id:9,prenom:'Nicolas',nom:'Colle',tel:'+33663381214',email:'colle.nicolas@gmail.com',date_naissance:'1984-05-22',ville:'Marseille',adresse:'18 quai de Rive Neuve',code_postal:'13007',pays:'France',regime_alimentaire:'Pas de régime',contrat_type:'Auto-entrepreneur',carte_sncf:'Avantage Week-end',vehicule:false,local:false,tags:[{name:'Lumière',level:5}],notes:'',status:'complete',rate_a:320,rate_a_unit:'€ / jour',rate_b:480,rate_b_unit:'€ / jour',rate_note:'',
+    assignments:[{event_id:'pa',team:'Technique Scène',role:'Superviseur Light',status:'confirmed',transport_aller:'Marseille St-Charles > Paris Gare de Lyon',transport_aller_date:'06/03/2026',transport_retour:'Paris Gare de Lyon > Marseille',transport_retour_date:'18/03/2026',hebergement:'Hotel Holiday Inn',chambre_pref:'',autonome_transport:false,autonome_hebergement:false,magic_link_sent:true,magic_link_completed:true}]},
+  {contact_id:10,prenom:'Grégoire',nom:'Germain',tel:'',email:'greg@agence-episode.fr',date_naissance:'',ville:'Paris',adresse:'',code_postal:'',pays:'France',regime_alimentaire:'Pas de régime',contrat_type:'Auto-entrepreneur',carte_sncf:'',vehicule:true,local:true,tags:[{name:'Photographe',level:4},{name:'Vidéaste',level:3}],notes:'Profil incomplet — relancer',status:'verify',rate_a:0,rate_a_unit:'€ / jour',rate_b:0,rate_b_unit:'€ / jour',rate_note:'À négocier',
+    assignments:[{event_id:'pa',team:'Communication',role:'Dir. Communication',status:'confirmed',transport_aller:'',transport_aller_date:'',transport_retour:'',transport_retour_date:'',hebergement:'',chambre_pref:'',autonome_transport:true,autonome_hebergement:true,magic_link_sent:true,magic_link_completed:false}]},
+  {contact_id:11,prenom:'Hippolyte',nom:'Court',tel:'+33695088738',email:'hippolyte@agence-episode.fr',date_naissance:'2001-05-06',ville:'Paris',adresse:'',code_postal:'75011',pays:'France',regime_alimentaire:'Pas de régime',contrat_type:'Auto-entrepreneur',carte_sncf:'',vehicule:false,local:true,tags:[],notes:'',status:'new',rate_a:0,rate_a_unit:'€ / jour',rate_b:0,rate_b_unit:'€ / jour',rate_note:'',
+    assignments:[{event_id:'pa',team:'Artistique',role:'Resp. Prod/Log Artistique',status:'invited',transport_aller:'',transport_aller_date:'',transport_retour:'',transport_retour_date:'',hebergement:'',chambre_pref:'',autonome_transport:true,autonome_hebergement:true,magic_link_sent:false,magic_link_completed:false}]},
+  {contact_id:12,prenom:'Gilles',nom:'Chanu',tel:'+33689734582',email:'gilleschanu@icloud.com',date_naissance:'1972-03-13',ville:'Villepinte',adresse:'5 allée des Roses',code_postal:'93420',pays:'France',regime_alimentaire:'Pas de régime',contrat_type:'Intermittent',carte_sncf:'',vehicule:true,local:true,tags:[{name:'Électricien',level:5}],notes:'Chef électro — très fiable',status:'complete',rate_a:300,rate_a_unit:'€ / jour',rate_b:420,rate_b_unit:'€ / jour',rate_note:'',
+    assignments:[{event_id:'pa',team:'Technique Site',role:'Chef Électro',status:'confirmed',transport_aller:'',transport_aller_date:'',transport_retour:'',transport_retour_date:'',hebergement:'',chambre_pref:'',autonome_transport:true,autonome_hebergement:true,magic_link_sent:true,magic_link_completed:true},{event_id:'pa25',team:'Technique Site',role:'Chef Électro',status:'completed',transport_aller:'',transport_aller_date:'',transport_retour:'',transport_retour_date:'',hebergement:'',chambre_pref:'',autonome_transport:true,autonome_hebergement:true,magic_link_sent:true,magic_link_completed:true}]},
+  {contact_id:13,prenom:'Miad',nom:'Bensalem',tel:'+33672904111',email:'miad.bar@gmail.com',date_naissance:'1995-11-02',ville:'Paris',adresse:'66 bd de Belleville',code_postal:'75020',pays:'France',regime_alimentaire:'Halal',contrat_type:'Auto-entrepreneur',carte_sncf:'',vehicule:false,local:true,tags:[{name:'Barman',level:3}],notes:'Responsable bar',status:'partial',rate_a:150,rate_a_unit:'€ / jour',rate_b:200,rate_b_unit:'€ / jour',rate_note:'',
+    assignments:[{event_id:'pa',team:'Production',role:'Chef de Bar',status:'confirmed',transport_aller:'',transport_aller_date:'',transport_retour:'',transport_retour_date:'',hebergement:'',chambre_pref:'',autonome_transport:true,autonome_hebergement:true,magic_link_sent:true,magic_link_completed:true}]},
+  {contact_id:14,prenom:'Coline',nom:'Vasseur',tel:'+33645123890',email:'coline.vasseur@live.fr',date_naissance:'1997-07-14',ville:'Lille',adresse:'12 rue de Gand',code_postal:'59000',pays:'France',regime_alimentaire:'Végétarien',contrat_type:'Intermittent',carte_sncf:'Avantage Jeune',vehicule:false,local:false,tags:[],notes:'',status:'complete',rate_a:250,rate_a_unit:'€ / cachet',rate_b:400,rate_b_unit:'€ / cachet',rate_note:'',
+    assignments:[{event_id:'pa',team:'Performeur',role:'Chorégraphe / Performeuse',status:'confirmed',transport_aller:'Lille Flandres > Paris Nord',transport_aller_date:'12/03/2026',transport_retour:'Paris Nord > Lille',transport_retour_date:'15/03/2026',hebergement:'Hotel Holiday Inn',chambre_pref:'',autonome_transport:false,autonome_hebergement:false,magic_link_sent:true,magic_link_completed:true}]},
+  {contact_id:15,prenom:'Margaux',nom:'Delattre',tel:'+33678451209',email:'margaux.delattre@outlook.com',date_naissance:'1991-02-18',ville:'Paris',adresse:'88 av Daumesnil',code_postal:'75012',pays:'France',regime_alimentaire:'Sans gluten',contrat_type:'CDD',carte_sncf:'Liberté',vehicule:true,local:true,tags:[],notes:'Partenariats & sponsors',status:'complete',rate_a:0,rate_a_unit:'Forfait',rate_b:0,rate_b_unit:'Forfait',rate_note:'Salaire mensuel CDD',
+    assignments:[{event_id:'pa',team:'Partenariat',role:'Resp. Partenariats',status:'confirmed',transport_aller:'',transport_aller_date:'',transport_retour:'',transport_retour_date:'',hebergement:'',chambre_pref:'',autonome_transport:true,autonome_hebergement:true,magic_link_sent:true,magic_link_completed:true}]},
+  {contact_id:16,prenom:'Alexandre',nom:'Morel',tel:'+33690127453',email:'alex.morel@gmail.com',date_naissance:'1988-12-03',ville:'Strasbourg',adresse:'7 quai des Bateliers',code_postal:'67000',pays:'France',regime_alimentaire:'Pas de régime',contrat_type:'Auto-entrepreneur',carte_sncf:'',vehicule:false,local:false,tags:[{name:'Photographe',level:4}],notes:'',status:'partial',rate_a:300,rate_a_unit:'€ / jour',rate_b:450,rate_b_unit:'€ / jour',rate_note:'',
+    assignments:[{event_id:'pa',team:'Artistique',role:'Directeur Artistique',status:'confirmed',transport_aller:'Strasbourg > Paris Est',transport_aller_date:'07/03/2026',transport_retour:'Paris Est > Strasbourg',transport_retour_date:'18/03/2026',hebergement:'Hotel Holiday Inn',chambre_pref:'',autonome_transport:false,autonome_hebergement:false,magic_link_sent:true,magic_link_completed:false}]},
+  {contact_id:17,prenom:'Lola',nom:'Garnier',tel:'+33654789012',email:'lola.garnier@agence-episode.fr',date_naissance:'1996-09-22',ville:'Paris',adresse:'',code_postal:'75003',pays:'France',regime_alimentaire:'Vegan',contrat_type:'CDD',carte_sncf:'',vehicule:false,local:true,tags:[{name:'Vidéaste',level:4},{name:'Photographe',level:3}],notes:'',status:'complete',rate_a:0,rate_a_unit:'Forfait',rate_b:0,rate_b_unit:'Forfait',rate_note:'Salaire mensuel',
+    assignments:[{event_id:'pa',team:'Communication',role:'Vidéaste / Photographe',status:'confirmed',transport_aller:'',transport_aller_date:'',transport_retour:'',transport_retour_date:'',hebergement:'',chambre_pref:'',autonome_transport:true,autonome_hebergement:true,magic_link_sent:true,magic_link_completed:true}]},
+  {contact_id:18,prenom:'Julien',nom:'Petit',tel:'+33601234567',email:'julien.petit@gmail.com',date_naissance:'1985-06-30',ville:'Rennes',adresse:'14 rue Le Bastard',code_postal:'35000',pays:'France',regime_alimentaire:'Pas de régime',contrat_type:'Prestataire externe',carte_sncf:'',vehicule:true,local:false,tags:[{name:'Son',level:4}],notes:'Prestataire sono — Net&Green',status:'complete',rate_a:350,rate_a_unit:'€ / jour',rate_b:500,rate_b_unit:'€ / jour',rate_note:'Facture société',
+    assignments:[{event_id:'pa',team:'Prestataire Externe',role:'Ingénieur Son FOH',status:'confirmed',transport_aller:'Rennes > Paris Montparnasse',transport_aller_date:'07/03/2026',transport_retour:'Paris Montparnasse > Rennes',transport_retour_date:'18/03/2026',hebergement:'Hotel Holiday Inn',chambre_pref:'',autonome_transport:false,autonome_hebergement:false,magic_link_sent:true,magic_link_completed:true}]},
+  {contact_id:19,prenom:'Amira',nom:'Benali',tel:'+33678901234',email:'amira.b@live.fr',date_naissance:'1999-01-25',ville:'Lyon',adresse:'',code_postal:'69003',pays:'France',regime_alimentaire:'Halal',contrat_type:'Bénévole',carte_sncf:'Avantage Jeune',vehicule:false,local:false,tags:[{name:'Runner',level:1}],notes:'',status:'new',rate_a:0,rate_a_unit:'€ / jour',rate_b:0,rate_b_unit:'€ / jour',rate_note:'Bénévole — défraiement uniquement',
+    assignments:[{event_id:'pa',team:'Hybride',role:'Runner Général',status:'invited',transport_aller:'Lyon Part-Dieu > Paris',transport_aller_date:'12/03/2026',transport_retour:'Paris > Lyon',transport_retour_date:'15/03/2026',hebergement:'',chambre_pref:'',autonome_transport:false,autonome_hebergement:false,magic_link_sent:false,magic_link_completed:false}]},
+  {contact_id:20,prenom:'Thomas',nom:'Durand',tel:'+33687654321',email:'thomas.durand@outlook.fr',date_naissance:'1992-08-11',ville:'Villepinte',adresse:'22 av Division Leclerc',code_postal:'93420',pays:'France',regime_alimentaire:'Pas de régime',contrat_type:'Intermittent',carte_sncf:'',vehicule:true,local:true,tags:[{name:'Électricien',level:3},{name:'Chauffeur',level:2}],notes:'Habitant local — pas besoin hébergement',status:'verify',rate_a:250,rate_a_unit:'€ / jour',rate_b:350,rate_b_unit:'€ / jour',rate_note:'',
+    assignments:[{event_id:'pa',team:'Technique Site',role:'Électricien',status:'confirmed',transport_aller:'',transport_aller_date:'',transport_retour:'',transport_retour_date:'',hebergement:'',chambre_pref:'',autonome_transport:true,autonome_hebergement:true,magic_link_sent:true,magic_link_completed:true},{event_id:'pa25',team:'Technique Site',role:'Stagiaire Électro',status:'completed',transport_aller:'',transport_aller_date:'',transport_retour:'',transport_retour_date:'',hebergement:'',chambre_pref:'',autonome_transport:true,autonome_hebergement:true,magic_link_sent:true,magic_link_completed:true}]},
 ];
+
+/* ═══════════════════════════════════════
+   HELPERS
+   ═══════════════════════════════════════ */
 const TC={'Technique Scène':{bg:'rgba(88,101,242,.15)',c:'#7c8af2'},'Technique Site':{bg:'rgba(155,89,182,.15)',c:'#b580d4'},'Production':{bg:'rgba(59,165,93,.15)',c:'#5cc77a'},'Aménagement':{bg:'rgba(245,166,35,.15)',c:'#f5a623'},'Communication':{bg:'rgba(212,82,42,.15)',c:'#e07050'},'Scénographie':{bg:'rgba(155,89,182,.15)',c:'#c490e0'},'Artistique':{bg:'rgba(237,66,69,.15)',c:'#f08080'},'Performeur':{bg:'rgba(59,165,93,.15)',c:'#6dd89a'},'Prestataire Externe':{bg:'rgba(255,255,255,.08)',c:'var(--c3)'},'Partenariat':{bg:'rgba(245,166,35,.15)',c:'#f0c060'},'Hybride':{bg:'rgba(212,82,42,.15)',c:'#e8a070'}};
 const AG=['linear-gradient(140deg,#d4522a,#7d1e0a)','linear-gradient(140deg,#5865f2,#3644c4)','linear-gradient(140deg,#3ba55d,#1e6b3a)','linear-gradient(140deg,#f5a623,#c07a10)','linear-gradient(140deg,#9b59b6,#6d2d8a)','linear-gradient(140deg,#ed4245,#a82d2f)','linear-gradient(140deg,#3b82f6,#1d4ed8)','linear-gradient(140deg,#a855f7,#6d28d9)'];
 const ini=(p,n)=>(p[0]||'')+(n[0]||''),grd=i=>AG[i%AG.length];
-function fmtDate(d){if(!d)return '';const[y,m,day]=d.split('-');if(!y)return d;const months=['','Jan','Fév','Mar','Avr','Mai','Juin','Juil','Août','Sep','Oct','Nov','Déc'];return`${parseInt(day)}/${m}/${y}`}
+function fmtDate(d){if(!d)return '';const p=d.split('-');return p.length===3?`${parseInt(p[2])}/${p[1]}/${p[0]}`:d}
 const stb=s=>{const m={complete:['sc','Complet'],partial:['sp','Incomplet'],new:['sn','Nouveau'],verify:['sv','À vérifier']};const[c,l]=m[s]||m.new;return`<span class="sb ${c}">${l}</span>`};
 const hx=(i,p,n)=>`<div class="haw"><div class="hav" style="background:${grd(i)}">${ini(p,n)}</div><div class="har"><svg viewBox="0 0 100 100" fill="none"><polygon points="50,2 93,25 93,75 50,98 7,75 7,25" stroke="rgba(255,255,255,.12)" stroke-width="2"/></svg></div></div>`;
-const starsHtml=(lvl)=>{let s='';for(let i=1;i<=5;i++)s+=i<=lvl?'<span style="color:var(--amber);font-size:8px">★</span>':'<span style="color:var(--c4);font-size:8px">★</span>';return s};
-let sid=null;
-function render(d){const b=document.getElementById('tb');b.innerHTML=d.map(c=>{const tc=TC[c.events[0]?.team]||{bg:'rgba(255,255,255,.08)',c:'var(--c3)'};const t=c.events[0]?.team||'—';const tgs=c.tags.slice(0,2).map(x=>`<span style="font-family:'JetBrains Mono',monospace;font-size:var(--fs-xs);padding:1px 5px;border-radius:3px;background:rgba(255,255,255,.06);color:var(--c3);display:inline-flex;align-items:center;gap:3px">${x.name} ${starsHtml(x.level)}</span>`).join(' ')+(c.tags.length>2?` <span style="font-size:var(--fs-xs);color:var(--c3)">+${c.tags.length-2}</span>`:'');
-return`<tr class="${c.contact_id===sid?'sel':''}" onclick="openC(${c.contact_id})"><td><div class="td-name">${hx(c.contact_id,c.prenom,c.nom)}<div class="nb"><div class="fn">${c.prenom} ${c.nom}</div><span class="em">${c.email||'—'}</span></div></div></td><td><span class="tb" style="background:${tc.bg};color:${tc.c}">${t}</span></td><td style="font-size:var(--fs-xs);color:var(--c3)">${c.ville||'—'}</td><td style="font-size:var(--fs-xs);color:var(--c3)">${c.contrat_type}</td><td>${stb(c.status)}</td><td><div style="display:flex;gap:3px;flex-wrap:wrap">${tgs||'—'}</div></td></tr>`}).join('');document.getElementById('fc').textContent=d.length+' résultat'+(d.length!==1?'s':'')}
-function filt(){const q=document.getElementById('si').value.toLowerCase(),tm=document.getElementById('tf').value,ct=document.getElementById('cf').value,st=document.getElementById('sf').value;render(D.filter(c=>(!q||`${c.prenom} ${c.nom} ${c.email} ${c.tel} ${c.ville} ${c.tags.map(t=>t.name).join(' ')} ${c.events.map(e=>e.team+' '+e.role).join(' ')}`.toLowerCase().includes(q))&&(!tm||c.events.some(e=>e.team===tm))&&(!ct||c.contrat_type===ct)&&(!st||c.status===st)))}
-let sc='',sd=1;function srt(col){if(sc===col)sd*=-1;else{sc=col;sd=1}D.sort((a,b)=>{let x,y;if(col==='nom'){x=a.nom.toLowerCase();y=b.nom.toLowerCase()}else if(col==='equipe'){x=(a.events[0]?.team||'');y=(b.events[0]?.team||'')}else if(col==='ville'){x=a.ville||'';y=b.ville||''}else if(col==='contrat_type'){x=a.contrat_type;y=b.contrat_type}else if(col==='status'){x=a.status;y=b.status}else return 0;x=x.toLowerCase();y=y.toLowerCase();return x<y?-sd:x>y?sd:0});filt()}
+const starsHtml=(lvl,sz)=>{sz=sz||8;let s='';for(let i=1;i<=5;i++)s+=i<=lvl?`<span style="color:var(--amber);font-size:${sz}px">★</span>`:`<span style="color:var(--c4);font-size:${sz}px">★</span>`;return s};
 
-function openC(id){const r=document.getElementById('right');r.classList.remove('shut');const c=id?D.find(x=>x.contact_id===id):null;sid=id;filt();
-document.getElementById('rEmpty').style.display='none';document.getElementById('rActive').style.display='flex';
-if(!c){document.getElementById('rpA').style.background=AG[0];document.getElementById('rpA').textContent='?';document.getElementById('rpN').textContent='Nouveau contact';document.getElementById('rpT').textContent='Nouveau';document.getElementById('rpM').innerHTML='<span style="color:var(--c3)">Remplir le formulaire</span>';['fp','fn','ft','fe','fd','fv','fa','fz','fy','fs2','fno'].forEach(i=>document.getElementById(i).value='');document.getElementById('fc2').value='';document.getElementById('fr').value='Pas de régime';document.getElementById('tw').innerHTML='<div style="color:var(--c3);font-size:var(--fs-xs);padding:6px 0">Aucune compétence</div>';document.getElementById('eH').innerHTML='<p style="color:var(--c3);font-size:var(--fs-xs);padding:8px 0">Aucun événement</p>';document.getElementById('fra').value='';document.getElementById('frb').value='';document.getElementById('frau').value='€ / jour';document.getElementById('frbu').value='€ / jour';document.getElementById('frn').value='';rpSw('id',document.querySelector('.rp-tab'));return}
-const tc=TC[c.events[0]?.team]||{bg:'rgba(255,255,255,.08)',c:'var(--c3)'};
-document.getElementById('rpA').style.background=grd(c.contact_id);document.getElementById('rpA').textContent=ini(c.prenom,c.nom);
-document.getElementById('rpN').textContent=c.prenom+' '+c.nom;document.getElementById('rpT').textContent=c.prenom+' '+c.nom;
-document.getElementById('rpM').innerHTML=`<span class="tb" style="background:${tc.bg};color:${tc.c}">${c.events[0]?.team||'—'}</span><span style="opacity:.4">·</span><span style="font-size:var(--fs-xs)">${c.events[0]?.role||'—'}</span>`;
-document.getElementById('fp').value=c.prenom;document.getElementById('fn').value=c.nom;document.getElementById('ft').value=c.tel;document.getElementById('fe').value=c.email;document.getElementById('fd').value=fmtDate(c.date_naissance);document.getElementById('fv').value=c.ville;document.getElementById('fa').value=c.adresse;document.getElementById('fz').value=c.code_postal;document.getElementById('fy').value=c.pays;document.getElementById('fc2').value=c.contrat_type;document.getElementById('fr').value=c.regime_alimentaire;document.getElementById('fs2').value=c.carte_sncf;document.getElementById('fno').value=c.notes;
-document.getElementById('tw').innerHTML=c.tags.length?c.tags.map((t,i)=>`<div class="sk"><div class="sk-name">${t.name}</div><div class="sk-stars" data-idx="${i}">${[1,2,3,4,5].map(s=>`<span class="sk-star${s<=t.level?' on':''}" onclick="setStar(${c.contact_id},${i},${s})">★</span>`).join('')}</div><span class="sk-rm" onclick="rmSkill(${c.contact_id},${i})">×</span></div>`).join(''):'<div style="color:var(--c3);font-size:var(--fs-xs);padding:6px 0">Aucune compétence</div>';
-document.getElementById('fra').value=c.rate_a||'';document.getElementById('frb').value=c.rate_b||'';document.getElementById('frau').value=c.rate_a_unit||'€ / jour';document.getElementById('frbu').value=c.rate_b_unit||'€ / jour';document.getElementById('frn').value=c.rate_note||'';
-document.getElementById('eH').innerHTML=c.events.map(e=>{const ec=TC[e.team]||{bg:'rgba(255,255,255,.08)',c:'var(--c3)'};return`<div class="hist"><div class="hist-ev">${e.event}</div><span class="tb" style="background:${ec.bg};color:${ec.c}">${e.team}</span><div class="hist-role">${e.role}</div><div class="hist-dates">${e.dates}</div></div>`}).join('')||'<p style="color:var(--c3);font-size:var(--fs-xs)">Aucun</p>';
-rpSw('id',document.querySelector('.rp-tab'))}
+// Profile completion calculator
+function calcCompletion(c){
+  const fields=[c.prenom,c.nom,c.tel,c.email,c.date_naissance,c.ville,c.adresse,c.code_postal,c.pays,c.contrat_type];
+  const filled=fields.filter(f=>f&&f.trim&&f.trim()!=='').length;
+  return Math.round((filled/fields.length)*100);
+}
+function complColor(pct){return pct>=80?'var(--green)':pct>=50?'var(--amber)':'var(--red)'}
+
+/* ═══════════════════════════════════════
+   STATE
+   ═══════════════════════════════════════ */
+let activeEvent = null; // null = "Tous", or event id string
+let sid = null; // selected contact id
+
+/* ═══════════════════════════════════════
+   EVENT SWITCHER
+   ═══════════════════════════════════════ */
+function swEv(evId, el) {
+  // Update rail selection
+  document.querySelectorAll('.rail-ev-wrap,.rail-tous').forEach(w=>w.classList.remove('on'));
+  if(el) el.classList.add('on');
+
+  activeEvent = evId;
+  sid = null;
+  closeC();
+
+  // Update topbar event context badge
+  const ctx = document.getElementById('evCtx');
+  if(evId && EVENTS[evId]){
+    const ev = EVENTS[evId];
+    ctx.textContent = ev.name;
+    ctx.className = 'ev-ctx' + (ev.status==='archived'?' archived':'');
+    ctx.style.display = '';
+  } else {
+    ctx.style.display = 'none';
+  }
+
+  updateStats();
+  filt();
+}
+
+/* ═══════════════════════════════════════
+   STATS BAR — dynamic based on event context
+   ═══════════════════════════════════════ */
+function updateStats(){
+  const bar = document.getElementById('statsBar');
+  if(!activeEvent){
+    // "Tous" mode
+    const total=D.length;
+    const paCount=D.filter(c=>c.assignments.some(a=>a.event_id==='pa')).length;
+    const newCount=D.filter(c=>c.status==='new').length;
+    const incCount=D.filter(c=>c.status==='partial'||c.status==='verify').length;
+    bar.innerHTML=`
+      <div class="stat-card"><div class="stat-icon" style="background:rgba(88,101,242,.14)"><svg style="stroke:var(--blue)" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><div><div class="stat-value">${total}</div><div class="stat-label">Total contacts</div></div></div>
+      <div class="stat-card"><div class="stat-icon" style="background:rgba(59,165,93,.14)"><svg style="stroke:var(--green)" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div><div><div class="stat-value">${paCount}</div><div class="stat-label">Actifs PA26</div></div></div>
+      <div class="stat-card"><div class="stat-icon" style="background:rgba(245,166,35,.14)"><svg style="stroke:var(--amber)" viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"/></svg></div><div><div class="stat-value">${newCount}</div><div class="stat-label">Nouveaux</div></div></div>
+      <div class="stat-card"><div class="stat-icon" style="background:rgba(237,66,69,.14)"><svg style="stroke:var(--red)" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg></div><div><div class="stat-value">${incCount}</div><div class="stat-label">Incomplets</div></div></div>`;
+  } else {
+    // Event-scoped mode
+    const ev = EVENTS[activeEvent];
+    const assigned = D.filter(c=>c.assignments.some(a=>a.event_id===activeEvent));
+    const confirmed = assigned.filter(c=>c.assignments.find(a=>a.event_id===activeEvent)?.status==='confirmed'||c.assignments.find(a=>a.event_id===activeEvent)?.status==='completed');
+    const invited = assigned.filter(c=>c.assignments.find(a=>a.event_id===activeEvent)?.status==='invited');
+    const linkPending = assigned.filter(c=>{const a=c.assignments.find(x=>x.event_id===activeEvent);return a&&a.magic_link_sent&&!a.magic_link_completed});
+    bar.innerHTML=`
+      <div class="stat-card"><div class="stat-icon" style="background:rgba(88,101,242,.14)"><svg style="stroke:var(--blue)" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><div><div class="stat-value">${assigned.length}</div><div class="stat-label">Assignés</div></div></div>
+      <div class="stat-card"><div class="stat-icon" style="background:rgba(59,165,93,.14)"><svg style="stroke:var(--green)" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div><div><div class="stat-value">${confirmed.length}</div><div class="stat-label">Confirmés</div></div></div>
+      <div class="stat-card"><div class="stat-icon" style="background:rgba(245,166,35,.14)"><svg style="stroke:var(--amber)" viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"/></svg></div><div><div class="stat-value">${invited.length}</div><div class="stat-label">Invités</div></div></div>
+      <div class="stat-card"><div class="stat-icon" style="background:rgba(237,66,69,.14)"><svg style="stroke:var(--red)" viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></div><div><div class="stat-value">${linkPending.length}</div><div class="stat-label">Lien en attente</div></div></div>`;
+  }
+}
+
+/* ═══════════════════════════════════════
+   TABLE RENDERING
+   ═══════════════════════════════════════ */
+function render(data){
+  const b=document.getElementById('tb');
+  b.innerHTML=data.map(c=>{
+    // Determine team to show: if event scoped, show team for that event; otherwise show most recent
+    let team='—',role='';
+    if(activeEvent){
+      const a=c.assignments.find(x=>x.event_id===activeEvent);
+      if(a){team=a.team;role=a.role}
+    } else if(c.assignments.length){
+      team=c.assignments[0].team;role=c.assignments[0].role;
+    }
+    const tc=TC[team]||{bg:'rgba(255,255,255,.08)',c:'var(--c3)'};
+    const tgs=c.tags.slice(0,2).map(x=>`<span style="font-family:'JetBrains Mono',monospace;font-size:var(--fs-xs);padding:1px 5px;border-radius:3px;background:rgba(255,255,255,.06);color:var(--c3);display:inline-flex;align-items:center;gap:2px">${x.name} ${starsHtml(x.level)}</span>`).join(' ')+(c.tags.length>2?` <span style="font-size:var(--fs-xs);color:var(--c3)">+${c.tags.length-2}</span>`:'');
+    const pct=calcCompletion(c);const pColor=complColor(pct);
+    return`<tr class="${c.contact_id===sid?'sel':''}" onclick="openC(${c.contact_id})"><td><div class="td-name">${hx(c.contact_id,c.prenom,c.nom)}<div class="nb"><div class="fn">${c.prenom} ${c.nom}</div><span class="em">${c.email||'—'}</span></div></div></td><td><span class="tbg" style="background:${tc.bg};color:${tc.c}">${team}</span></td><td style="font-size:var(--fs-xs);color:var(--c3)">${c.ville||'—'}</td><td style="font-size:var(--fs-xs);color:var(--c3)">${c.contrat_type}</td><td>${stb(c.status)}</td><td><div style="display:flex;gap:3px;flex-wrap:wrap">${tgs||'<span style="color:var(--c3);font-size:var(--fs-xs)">—</span>'}</div></td><td><span style="font-family:'JetBrains Mono',monospace;font-size:var(--fs-xs);color:var(--c3)">${pct}%</span><div class="pct-bar"><div class="pct-fill" style="width:${pct}%;background:${pColor}"></div></div></td></tr>`;
+  }).join('');
+  document.getElementById('fc').textContent=data.length+' résultat'+(data.length!==1?'s':'');
+  document.getElementById('pgCount').textContent=data.length;
+}
+
+/* ═══════════════════════════════════════
+   FILTER — event-aware
+   ═══════════════════════════════════════ */
+function filt(){
+  const q=document.getElementById('si').value.toLowerCase();
+  const tm=document.getElementById('tf').value;
+  const ct=document.getElementById('cf').value;
+  const st=document.getElementById('sf').value;
+  let filtered = D;
+  // If event is selected, only show contacts assigned to that event
+  if(activeEvent){
+    filtered = filtered.filter(c=>c.assignments.some(a=>a.event_id===activeEvent));
+  }
+  filtered = filtered.filter(c=>{
+    const mq=!q||`${c.prenom} ${c.nom} ${c.email} ${c.tel} ${c.ville} ${c.tags.map(t=>t.name).join(' ')} ${c.assignments.map(a=>a.team+' '+a.role).join(' ')}`.toLowerCase().includes(q);
+    let mt=true;
+    if(tm){
+      if(activeEvent) mt=c.assignments.some(a=>a.event_id===activeEvent&&a.team===tm);
+      else mt=c.assignments.some(a=>a.team===tm);
+    }
+    const mc=!ct||c.contrat_type===ct;
+    const ms=!st||c.status===st;
+    return mq&&mt&&mc&&ms;
+  });
+  render(filtered);
+}
+
+/* ═══════════════════════════════════════
+   SORT
+   ═══════════════════════════════════════ */
+let sortCol='',sortDir=1;
+function srt(col){
+  if(sortCol===col)sortDir*=-1;else{sortCol=col;sortDir=1}
+  D.sort((a,b)=>{let x,y;
+    if(col==='nom'){x=a.nom;y=b.nom}
+    else if(col==='equipe'){x=(a.assignments[0]?.team||'');y=(b.assignments[0]?.team||'')}
+    else if(col==='ville'){x=a.ville||'';y=b.ville||''}
+    else if(col==='contrat_type'){x=a.contrat_type;y=b.contrat_type}
+    else if(col==='status'){x=a.status;y=b.status}
+    else return 0;
+    x=x.toLowerCase();y=y.toLowerCase();
+    return x<y?-sortDir:x>y?sortDir:0;
+  });
+  filt();
+}
+
+/* ═══════════════════════════════════════
+   RIGHT PANEL — builds tabs dynamically based on event context
+   ═══════════════════════════════════════ */
+function openC(id){
+  const r=document.getElementById('right');r.classList.remove('shut');
+  const c=id?D.find(x=>x.contact_id===id):null;sid=id;filt();
+  document.getElementById('rEmpty').style.display='none';
+  document.getElementById('rActive').style.display='flex';
+
+  // Build tabs based on context
+  const tabsEl=document.getElementById('rpTabs');
+  const bodyEl=document.getElementById('rpBody');
+  let tabs=[{id:'id',label:'Identité'},{id:'ev',label:'Événements'},{id:'ad',label:'Admin 🔒'},{id:'dc',label:'Docs'}];
+
+  // If event is selected and contact is assigned, add event tab
+  let evAssignment=null;
+  if(c && activeEvent){
+    evAssignment=c.assignments.find(a=>a.event_id===activeEvent);
+    if(evAssignment){
+      const evName=EVENTS[activeEvent]?.short||activeEvent;
+      tabs.splice(1,0,{id:'evl',label:evName});
+    }
+  }
+  tabsEl.innerHTML=tabs.map((t,i)=>`<div class="rp-tab${i===0?' active':''}" onclick="rpSw('${t.id}',this)">${t.label}</div>`).join('');
+
+  if(!c){
+    // New contact
+    document.getElementById('rpA').style.background=AG[0];document.getElementById('rpA').textContent='?';
+    document.getElementById('rpN').textContent='Nouveau contact';document.getElementById('rpT').textContent='Nouveau';
+    document.getElementById('rpM').innerHTML='<span style="color:var(--c3)">Remplir le formulaire</span>';
+    document.getElementById('rpCompl').style.display='none';
+    document.getElementById('rpActions').style.display='none';
+    bodyEl.innerHTML=buildIdentitePanel(null)+buildEventsPanel(null)+buildAdminPanel(null)+buildDocsPanel();
+    rpSw('id',tabsEl.querySelector('.rp-tab'));
+    return;
+  }
+
+  // Existing contact
+  const tc=TC[c.assignments[0]?.team]||{bg:'rgba(255,255,255,.08)',c:'var(--c3)'};
+  const mainAssign = activeEvent ? evAssignment : c.assignments[0];
+  document.getElementById('rpA').style.background=grd(c.contact_id);
+  document.getElementById('rpA').textContent=ini(c.prenom,c.nom);
+  document.getElementById('rpN').textContent=c.prenom+' '+c.nom;
+  document.getElementById('rpT').textContent=c.prenom+' '+c.nom;
+  const atc=TC[mainAssign?.team]||{bg:'rgba(255,255,255,.08)',c:'var(--c3)'};
+  document.getElementById('rpM').innerHTML=`<span class="tbg" style="background:${atc.bg};color:${atc.c}">${mainAssign?.team||'—'}</span><span style="opacity:.4">·</span><span style="font-size:var(--fs-xs)">${mainAssign?.role||'—'}</span>${c.vehicule?'<span style="opacity:.4">·</span><span style="font-size:var(--fs-xs)">🚗 Véhiculé</span>':''}${c.local?'<span style="opacity:.4">·</span><span style="font-size:var(--fs-xs)">📍 Local</span>':''}`;
+
+  // Completion bar
+  const pct=calcCompletion(c);
+  document.getElementById('rpCompl').style.display='flex';
+  document.getElementById('rpComplFill').style.width=pct+'%';
+  document.getElementById('rpComplFill').style.background=complColor(pct);
+  document.getElementById('rpComplPct').textContent=pct+'%';
+  document.getElementById('rpActions').style.display='flex';
+
+  // Build body panels
+  let panelsHtml=buildIdentitePanel(c);
+  if(evAssignment) panelsHtml+=buildEventLogisticsPanel(c,evAssignment);
+  panelsHtml+=buildEventsPanel(c)+buildAdminPanel(c)+buildDocsPanel();
+  bodyEl.innerHTML=panelsHtml;
+
+  rpSw('id',tabsEl.querySelector('.rp-tab'));
+}
+
+/* ── Panel builders ── */
+function buildIdentitePanel(c){
+  const v=c||{};
+  return`<div class="rp-panel active" id="rp-id">
+<div class="fs"><div class="fs-t">Personnel</div><div class="fg">
+<div class="f"><label>Prénom</label><input value="${v.prenom||''}" placeholder="Prénom"></div>
+<div class="f"><label>Nom</label><input value="${v.nom||''}" placeholder="Nom"></div>
+<div class="f"><label>Tél</label><input type="tel" value="${v.tel||''}" placeholder="+33 6…"></div>
+<div class="f"><label>Email</label><input type="email" value="${v.email||''}" placeholder="email@…"></div>
+<div class="f"><label>Naissance</label><input type="text" value="${fmtDate(v.date_naissance||'')}" placeholder="JJ/MM/AAAA"></div>
+<div class="f"><label>Ville</label><input value="${v.ville||''}" placeholder="Ville"></div>
+<div class="f f2"><label>Adresse</label><input value="${v.adresse||''}" placeholder="Adresse"></div>
+<div class="f"><label>CP</label><input value="${v.code_postal||''}" placeholder="Code postal"></div>
+<div class="f"><label>Pays</label><input value="${v.pays||''}" placeholder="Pays"></div>
+</div></div>
+<div class="fs"><div class="fs-t">Contrat & Logistique</div><div class="fg">
+<div class="f"><label>Contrat</label><select>${['','Intermittent','Auto-entrepreneur','CDI','CDD','Prestataire externe','Bénévole'].map(o=>`<option${v.contrat_type===o?' selected':''}>${o||'— Sélectionner —'}</option>`).join('')}</select></div>
+<div class="f"><label>Régime</label><select>${['Pas de régime','Végétarien','Vegan','Halal','Casher','Sans gluten'].map(o=>`<option${v.regime_alimentaire===o?' selected':''}>${o}</option>`).join('')}</select></div>
+<div class="f"><label>Véhiculé</label><select><option${v.vehicule?' selected':''}>Oui</option><option${!v.vehicule?' selected':''}>Non</option></select></div>
+<div class="f"><label>Local</label><select><option${v.local?' selected':''}>Oui</option><option${!v.local?' selected':''}>Non</option></select></div>
+<div class="f f2"><label>Carte SNCF</label><input value="${v.carte_sncf||''}" placeholder="N° carte avantage"></div>
+</div></div>
+<div class="fs"><div class="fs-t">Compétences</div>
+<div id="tw">${c&&c.tags.length?c.tags.map((t,i)=>`<div class="sk"><div class="sk-name">${t.name}</div><div class="sk-stars">${[1,2,3,4,5].map(s=>`<span class="sk-star${s<=t.level?' on':''}" onclick="setStar(${c.contact_id},${i},${s})">★</span>`).join('')}</div><span class="sk-rm" onclick="rmSkill(${c.contact_id},${i})">×</span></div>`).join(''):'<div style="color:var(--c3);font-size:var(--fs-xs);padding:6px 0">Aucune compétence</div>'}</div>
+<div style="display:flex;gap:6px;margin-top:8px;margin-bottom:6px"><input type="text" id="customTag" placeholder="Ajouter une compétence…" style="flex:1;padding:6px 9px;border:1px solid var(--c4);border-radius:6px;background:var(--frame-input);font-family:'Outfit',sans-serif;font-size:var(--fs-xs);color:var(--c1);outline:none;min-width:0" onkeydown="if(event.key==='Enter'){addT(this.value);this.value=''}"><button onclick="addT(document.getElementById('customTag').value);document.getElementById('customTag').value=''" style="padding:6px 12px;border-radius:6px;border:1px solid var(--accent);background:rgba(212,82,42,.1);color:var(--accent);font-family:'Outfit',sans-serif;font-size:var(--fs-xs);font-weight:var(--fw-s);cursor:pointer;white-space:nowrap">+ Ajouter</button></div>
+<div class="tg-btns"><button class="tg-b" onclick="addT('Électricien')">Élec</button><button class="tg-b" onclick="addT('Régisseur')">Régie</button><button class="tg-b" onclick="addT('Photographe')">Photo</button><button class="tg-b" onclick="addT('Son')">Son</button><button class="tg-b" onclick="addT('Lumière')">Light</button><button class="tg-b" onclick="addT('Runner')">Runner</button><button class="tg-b" onclick="addT('Chauffeur')">Chauff</button><button class="tg-b" onclick="addT('Scénographe')">Scéno</button><button class="tg-b" onclick="addT('Barman')">Bar</button></div>
+</div>
+<div class="fs"><div class="fs-t">Magic Link — Mise à jour profil</div>
+<div style="font-size:var(--fs-xs);color:var(--c3);margin-bottom:8px">Lien unique pour que le contact mette à jour ses infos personnelles</div>
+<div class="ml-box"><div class="ml-url">app.festiflow.com/update/${c?c.contact_id:'…'}</div><button class="ml-copy" onclick="copyML(1)">Copier</button><button class="ml-send" onclick="alert('Email envoyé !')">Envoyer</button></div>
+</div>
+<div class="fs"><div class="fs-t">Notes</div><textarea style="width:100%;padding:7px 9px;border:1px solid var(--c4);border-radius:6px;background:var(--frame-input);font-family:'Outfit',sans-serif;font-size:var(--fs-sm);color:var(--c1);outline:none;min-height:50px;resize:vertical" placeholder="Notes internes…">${v.notes||''}</textarea></div>
+</div>`;
+}
+
+function buildEventLogisticsPanel(c,a){
+  const ev=EVENTS[a.event_id];
+  const isArchived=ev?.status==='archived';
+  const dis=isArchived?' disabled':'';
+  const cls=isArchived?' archived':'';
+  const statusMap={invited:'Invité',confirmed:'Confirmé',completed:'Terminé',cancelled:'Annulé'};
+  const astb=statusMap[a.status]||a.status;
+  return`<div class="rp-panel" id="rp-evl">
+<div class="ev-section${cls}">
+  <div class="ev-section-hd">${ev?.name||a.event_id} — ${astb}</div>
+  <div class="fg">
+    <div class="f"><label>Équipe</label><input value="${a.team}"${dis}></div>
+    <div class="f"><label>Rôle / Poste</label><input value="${a.role}"${dis}></div>
+  </div>
+</div>
+<div class="fs"><div class="fs-t">Transport</div><div class="fg">
+  <div class="f"><label>Autonome transport</label><select${dis}><option${a.autonome_transport?' selected':''}>Oui</option><option${!a.autonome_transport?' selected':''}>Non</option></select></div>
+  <div class="f"><label>Véhiculé</label><span style="font-size:var(--fs-sm);color:var(--c1);padding:7px 0">${c.vehicule?'Oui 🚗':'Non'}</span></div>
+  <div class="f f2"><label>Aller (trajet)</label><input value="${a.transport_aller}" placeholder="Ville départ > Ville arrivée"${dis}></div>
+  <div class="f"><label>Date aller</label><input value="${a.transport_aller_date}" placeholder="JJ/MM/AAAA"${dis}></div>
+  <div class="f"><label>Carte SNCF</label><span style="font-size:var(--fs-sm);color:var(--c1);padding:7px 0">${c.carte_sncf||'—'}</span></div>
+  <div class="f f2"><label>Retour (trajet)</label><input value="${a.transport_retour}" placeholder="Ville départ > Ville arrivée"${dis}></div>
+  <div class="f"><label>Date retour</label><input value="${a.transport_retour_date}" placeholder="JJ/MM/AAAA"${dis}></div>
+  <div class="f"><label></label></div>
+</div></div>
+<div class="fs"><div class="fs-t">Hébergement</div><div class="fg">
+  <div class="f"><label>Autonome logement</label><select${dis}><option${a.autonome_hebergement?' selected':''}>Oui</option><option${!a.autonome_hebergement?' selected':''}>Non</option></select></div>
+  <div class="f"><label>Local</label><span style="font-size:var(--fs-sm);color:var(--c1);padding:7px 0">${c.local?'Oui 📍':'Non'}</span></div>
+  <div class="f f2"><label>Hôtel / Logement</label><input value="${a.hebergement}" placeholder="Nom de l'hôtel…"${dis}></div>
+  <div class="f f2"><label>Chambre commune avec</label><input value="${a.chambre_pref}" placeholder="Nom(s) de préférence…"${dis}></div>
+</div></div>
+${!isArchived?`<div class="fs"><div class="fs-t">Magic Link — Confirmation événement</div>
+<div style="font-size:var(--fs-xs);color:var(--c3);margin-bottom:8px">Lien pour que le contact confirme sa participation et remplisse ses infos logistiques</div>
+<div class="ml-box"><div class="ml-url">app.festiflow.com/event/${a.event_id}/confirm/${c.contact_id}</div><button class="ml-copy" onclick="copyML(2)">Copier</button><button class="ml-send" onclick="alert('Email envoyé !')">Envoyer</button></div>
+<div style="margin-top:8px;font-size:var(--fs-xs);color:var(--c3)">Statut: ${a.magic_link_sent?(a.magic_link_completed?'<span style="color:var(--green)">✓ Complété</span>':'<span style="color:var(--amber)">Envoyé — en attente</span>'):'<span style="color:var(--c3)">Pas encore envoyé</span>'}</div>
+</div>`:''}
+</div>`;
+}
+
+function buildEventsPanel(c){
+  if(!c) return'<div class="rp-panel" id="rp-ev"><div style="color:var(--c3);font-size:var(--fs-xs);padding:16px">Aucun événement</div></div>';
+  const rows=c.assignments.map(a=>{
+    const ev=EVENTS[a.event_id];
+    const atc=TC[a.team]||{bg:'rgba(255,255,255,.08)',c:'var(--c3)'};
+    const statusMap={invited:'Invité',confirmed:'Confirmé',completed:'Terminé',cancelled:'Annulé'};
+    return`<div class="hist"><div class="hist-ev">${ev?.name||a.event_id}</div><span class="tbg" style="background:${atc.bg};color:${atc.c}">${a.team}</span><div class="hist-role">${a.role}</div><div style="font-size:var(--fs-xs);color:var(--c3)">${statusMap[a.status]||a.status}</div></div>`;
+  }).join('');
+  return`<div class="rp-panel" id="rp-ev"><div class="fs"><div class="fs-t">Historique (${c.assignments.length} événements)</div>${rows||'<div style="color:var(--c3);font-size:var(--fs-xs);padding:6px 0">Aucun</div>'}</div></div>`;
+}
+
+function buildAdminPanel(c){
+  const v=c||{};
+  return`<div class="rp-panel" id="rp-ad">
+<div class="fs"><div class="fs-t">Rémunération</div><div class="fg">
+<div class="f f2"><label>Taux A — Montage / Démontage</label><div class="rate-row"><input type="number" value="${v.rate_a||''}" placeholder="350"><select>${['€ / jour','€ / heure','€ / cachet','Forfait'].map(o=>`<option${v.rate_a_unit===o?' selected':''}>${o}</option>`).join('')}</select></div></div>
+<div class="f f2"><label>Taux B — Exploitation / Show</label><div class="rate-row"><input type="number" value="${v.rate_b||''}" placeholder="525"><select>${['€ / jour','€ / heure','€ / cachet','Forfait'].map(o=>`<option${v.rate_b_unit===o?' selected':''}>${o}</option>`).join('')}</select></div></div>
+<div class="f f2"><label>Note rémunération</label><textarea style="width:100%;padding:7px 9px;border:1px solid var(--c4);border-radius:6px;background:var(--frame-input);font-family:'Outfit',sans-serif;font-size:var(--fs-sm);color:var(--c1);outline:none;min-height:40px;resize:vertical" placeholder="Ex: Forfait global + frais km…">${v.rate_note||''}</textarea></div>
+</div></div>
+<div class="admin-lock"><div class="admin-lock-hd">🔒 Accès production uniquement</div><div class="fg">
+<div class="f f2"><label>N° sécu sociale</label><input placeholder="1 81 09 75 115 097 48" disabled></div>
+<div class="f f2"><label>IBAN</label><input placeholder="FR76 1142 5009 …" disabled></div>
+<div class="f f2"><label>N° congé spectacle</label><input placeholder="D110449" disabled></div>
+<div class="f f2"><label>Lieu de naissance</label><input placeholder="Paris 12ème" disabled></div>
+</div></div>
+<p style="text-align:center;font-size:var(--fs-xs);color:var(--c3);opacity:.5;padding:8px 0">Champs sensibles disponibles version serveur</p>
+</div>`;
+}
+
+function buildDocsPanel(){
+  return`<div class="rp-panel" id="rp-dc"><div class="fs"><div class="fs-t">Attestation de vigilance</div>
+<div style="border:1.5px dashed var(--c4);border-radius:8px;padding:18px;text-align:center;cursor:pointer;transition:border-color .14s" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--c4)'">
+<div style="font-size:var(--fs-sm);color:var(--c3)">Glisser ou cliquer pour uploader</div>
+<div style="font-size:var(--fs-xs);color:var(--c3);opacity:.5;margin-top:3px">PDF, JPG, PNG · 10 MB max</div>
+</div></div>
+<div class="fs"><div class="fs-t">Autres documents</div><div style="text-align:center;padding:12px 0;color:var(--c3);font-size:var(--fs-xs)">Aucun document</div></div></div>`;
+}
+
+/* ═══════════════════════════════════════
+   INTERACTIONS
+   ═══════════════════════════════════════ */
 function closeC(){sid=null;document.getElementById('rActive').style.display='none';document.getElementById('rEmpty').style.display='';filt()}
-function rpSw(p,el){document.querySelectorAll('.rp-tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.rp-panel').forEach(x=>x.classList.remove('active'));if(el)el.classList.add('active');document.getElementById('rp-'+p).classList.add('active')}
-function rmT(el){el.parentElement.remove()}
+function rpSw(p,el){document.querySelectorAll('.rp-tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.rp-panel').forEach(x=>x.classList.remove('active'));if(el)el.classList.add('active');const panel=document.getElementById('rp-'+p);if(panel)panel.classList.add('active')}
+
 function addT(l){l=(l||'').trim();if(!l||!sid)return;const c=D.find(x=>x.contact_id===sid);if(!c)return;if(c.tags.some(t=>t.name.toLowerCase()===l.toLowerCase()))return;c.tags.push({name:l,level:0});openC(sid)}
 function setStar(cid,idx,level){const c=D.find(x=>x.contact_id===cid);if(!c||!c.tags[idx])return;c.tags[idx].level=level;openC(cid);filt()}
 function rmSkill(cid,idx){const c=D.find(x=>x.contact_id===cid);if(!c)return;c.tags.splice(idx,1);openC(cid);filt()}
-function swEv(el){document.querySelectorAll('.rail-ev-wrap').forEach(w=>w.classList.remove('on'));el.classList.add('on')}
-render(D);
+
+function copyML(type){
+  const c=sid?D.find(x=>x.contact_id===sid):null;if(!c)return;
+  let url;
+  if(type===1) url=`app.festiflow.com/update/${c.contact_id}`;
+  else url=`app.festiflow.com/event/${activeEvent||'pa'}/confirm/${c.contact_id}`;
+  navigator.clipboard.writeText(url).catch(()=>{});
+  const btn=event.target;const orig=btn.textContent;btn.textContent='Copié ✓';setTimeout(()=>btn.textContent=orig,1500);
+}
+
+/* ═══════════════════════════════════════
+   INIT
+   ═══════════════════════════════════════ */
+updateStats();
+filt();
 </script>
 </body>
 </html>
