@@ -589,7 +589,7 @@ function openC(id){
   // Build tabs based on context
   const tabsEl=document.getElementById('rpTabs');
   const bodyEl=document.getElementById('rpBody');
-  let tabs=[{id:'id',label:'Identité'},{id:'sk',label:'Compétences'},{id:'ev',label:'Événements'},{id:'ad',label:'Admin 🔒'},{id:'dc',label:'Docs'}];
+  let tabs=[{id:'id',label:'Identité'},{id:'sk',label:'Compétences'},{id:'ev',label:'Événements'},{id:'ad',label:'Admin'},{id:'dc',label:'Docs'}];
 
   // If event is selected and contact is assigned, add event tab
   let evAssignment=null;
@@ -622,7 +622,7 @@ function openC(id){
   document.getElementById('rpN').textContent=c.prenom+' '+c.nom;
   document.getElementById('rpT').textContent=c.prenom+' '+c.nom;
   const atc=TC[mainAssign?.team]||{bg:'rgba(255,255,255,.08)',c:'var(--c3)'};
-  document.getElementById('rpM').innerHTML=`<span class="tbg" style="background:${atc.bg};color:${atc.c}">${mainAssign?.team||'—'}</span><span style="opacity:.4">·</span><span style="font-size:var(--ct-xs)">${mainAssign?.role||'—'}</span>${c.vehicule?'<span style="opacity:.4">·</span><span style="font-size:var(--ct-xs)">🚗 Véhiculé</span>':''}${c.local?'<span style="opacity:.4">·</span><span style="font-size:var(--ct-xs)">📍 Local</span>':''}`;
+  document.getElementById('rpM').innerHTML=`<span class="tbg" style="background:${atc.bg};color:${atc.c}">${mainAssign?.team||'—'}</span><span style="opacity:.4">·</span><span style="font-size:var(--ct-xs)">${mainAssign?.role||'—'}</span>${c.vehicule?'<span style="opacity:.4">·</span><span style="font-size:var(--ct-xs)">Véhiculé</span>':''}${c.local?'<span style="opacity:.4">·</span><span style="font-size:var(--ct-xs)">Local</span>':''}`;
 
   // Completion bar
   const pct=calcCompletion(c);
@@ -692,27 +692,35 @@ function buildEventLogisticsPanel(c,a){
   const cls=isArchived?' archived':'';
   const statusMap={invited:'Invité',confirmed:'Confirmé',completed:'Terminé',cancelled:'Annulé'};
   const astb=statusMap[a.status]||a.status;
+  // Parse "From > To" format into separate fields
+  const allerParts=(a.transport_aller||'').split('>').map(s=>s.trim());
+  const allerFrom=allerParts[0]||'';const allerTo=allerParts[1]||'';
+  const retourParts=(a.transport_retour||'').split('>').map(s=>s.trim());
+  const retourFrom=retourParts[0]||'';const retourTo=retourParts[1]||'';
+  const teams=['Production','Technique Scène','Technique Site','Aménagement','Artistique','Communication','Scénographie','Performeur','Prestataire Externe','Partenariat','Hybride'];
   return`<div class="rp-panel" id="rp-evl">
 <div class="ev-section${cls}">
   <div class="ev-section-hd">${ev?.name||a.event_id} — ${astb}</div>
   <div class="fg">
-    <div class="f"><label>Équipe</label><input value="${a.team}"${dis}></div>
-    <div class="f"><label>Rôle / Poste</label><input value="${a.role}"${dis}></div>
+    <div class="f"><label>Équipe</label><select${dis}>${teams.map(t=>`<option${t===a.team?' selected':''}>${t}</option>`).join('')}</select></div>
+    <div class="f"><label>Rôle / Poste</label><select${dis}><option${a.role?'':' selected'}>— Sélectionner —</option>${['Direction Technique','Directeur Technique','Régisseur Général','Régisseur','Superviseur Son','Superviseur Light','Chef Électro','Électricien','Chef de Bar','Barman','Chorégraphe','Performeuse','Dir. Communication','Photographe','Vidéaste','Chef de Projet','Directrice Production','Directrice Festival','Resp. Partenariats','Resp. Prod/Log','Runner','Ingénieur Son FOH'].map(r=>`<option${r===a.role?' selected':''}>${r}</option>`).join('')}</select></div>
   </div>
 </div>
 <div class="fs"><div class="fs-t">Transport</div><div class="fg">
   <div class="f"><label>Autonome transport</label><select${dis}><option${a.autonome_transport?' selected':''}>Oui</option><option${!a.autonome_transport?' selected':''}>Non</option></select></div>
-  <div class="f"><label>Véhiculé</label><span style="font-size:var(--ct-sm);color:var(--c1);padding:7px 0">${c.vehicule?'Oui 🚗':'Non'}</span></div>
-  <div class="f f2"><label>Aller (trajet)</label><input value="${a.transport_aller}" placeholder="Ville départ > Ville arrivée"${dis}></div>
+  <div class="f"><label>Véhiculé</label><select disabled><option${c.vehicule?' selected':''}>Oui</option><option${!c.vehicule?' selected':''}>Non</option></select></div>
+  <div class="f"><label>Aller — Départ</label><input value="${allerFrom}" placeholder="Ville de départ"${dis}></div>
+  <div class="f"><label>Aller — Arrivée</label><input value="${allerTo}" placeholder="Ville d'arrivée"${dis}></div>
   <div class="f"><label>Date aller</label><input value="${a.transport_aller_date}" placeholder="JJ/MM/AAAA"${dis}></div>
-  <div class="f"><label>Carte SNCF</label><span style="font-size:var(--ct-sm);color:var(--c1);padding:7px 0">${c.carte_sncf||'—'}</span></div>
-  <div class="f f2"><label>Retour (trajet)</label><input value="${a.transport_retour}" placeholder="Ville départ > Ville arrivée"${dis}></div>
+  <div class="f"><label>Carte SNCF</label><input value="${c.carte_sncf||''}" disabled placeholder="—"></div>
+  <div class="f"><label>Retour — Départ</label><input value="${retourFrom}" placeholder="Ville de départ"${dis}></div>
+  <div class="f"><label>Retour — Arrivée</label><input value="${retourTo}" placeholder="Ville d'arrivée"${dis}></div>
   <div class="f"><label>Date retour</label><input value="${a.transport_retour_date}" placeholder="JJ/MM/AAAA"${dis}></div>
   <div class="f"><label></label></div>
 </div></div>
 <div class="fs"><div class="fs-t">Hébergement</div><div class="fg">
   <div class="f"><label>Autonome logement</label><select${dis}><option${a.autonome_hebergement?' selected':''}>Oui</option><option${!a.autonome_hebergement?' selected':''}>Non</option></select></div>
-  <div class="f"><label>Local</label><span style="font-size:var(--ct-sm);color:var(--c1);padding:7px 0">${c.local?'Oui 📍':'Non'}</span></div>
+  <div class="f"><label>Local</label><select disabled><option${c.local?' selected':''}>Oui</option><option${!c.local?' selected':''}>Non</option></select></div>
   <div class="f f2"><label>Hôtel / Logement</label><input value="${a.hebergement}" placeholder="Nom de l'hôtel…"${dis}></div>
   <div class="f f2"><label>Chambre commune avec</label><input value="${a.chambre_pref}" placeholder="Nom(s) de préférence…"${dis}></div>
 </div></div>
